@@ -1,11 +1,10 @@
 package com.autmatika.tests.withPages.mH_Warranty;
 
-import com.autmatika.tests.withPages.theInternet.LoginPage;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Reporter;
 
-public class SalesforceLogin {
+public class SalesforceLoginPage {
 
     @FindBy(id = "username")
     private SelenideElement userNameText;
@@ -20,7 +19,7 @@ public class SalesforceLogin {
     private SelenideElement searchText;
 
 
-    public SalesforceLogin loginToSalesforce(String username, String password) {
+    public SalesforceLoginPage loginToSalesforce(String username, String password) {
 
         userNameText.setValue(username);
         passwordText.setValue(password);
