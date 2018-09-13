@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="10" verbose="2" name="Meritage Homes Test Suite" parallel="methods">
+
+    <listeners>
+        <listener class-name="com.codeborne.selenide.testng.ExtentTestNgListener"/>
+    </listeners>
+
+    <test name="Meritage Homes Search Test ">
+        <classes>
+            <class name="com.meritage.tests.search.SearchTest"/>
+        </classes>
+    </test> <!-- TestNG Test -->
+</suite> <!-- TestNG Forum -->
