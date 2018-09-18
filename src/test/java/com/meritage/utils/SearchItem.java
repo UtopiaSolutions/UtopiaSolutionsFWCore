@@ -1,4 +1,4 @@
-package com.meritage;
+package com.meritage.utils;
 
 public class SearchItem {
 

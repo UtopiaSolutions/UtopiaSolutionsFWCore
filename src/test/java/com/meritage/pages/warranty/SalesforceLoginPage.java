@@ -1,4 +1,4 @@
-package com.autmatika.tests.withPages.mH_Warranty;
+package com.meritage.pages.warranty;
 
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,9 +14,6 @@ public class SalesforceLoginPage {
 
     @FindBy(id = "login")
     private SelenideElement signInBtn;
-
-    @FindBy(id = "phSearchInput")
-    private SelenideElement searchText;
 
 
     public SalesforceLoginPage loginToSalesforce(String username, String password) {

@@ -1,8 +1,8 @@
-package com.meritage.pages;
+package com.meritage.pages.web;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import com.meritage.SearchItem;
+import com.meritage.utils.SearchItem;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
 

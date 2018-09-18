@@ -1,4 +1,4 @@
-package com.meritage.pages;
+package com.meritage.pages.web;
 
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
