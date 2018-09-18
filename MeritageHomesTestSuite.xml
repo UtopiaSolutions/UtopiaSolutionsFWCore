@@ -8,7 +8,7 @@
 
     <test name="Meritage Homes Search Test ">
         <classes>
-            <class name="com.meritage.tests.search.SearchTest"/>
+            <class name="com.meritage.tests.web.SearchTest"/>
         </classes>
     </test> <!-- TestNG Test -->
 </suite> <!-- TestNG Forum -->
