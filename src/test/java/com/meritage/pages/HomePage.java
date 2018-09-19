@@ -13,23 +13,50 @@ public class HomePage {
     @FindBy(xpath = "//button[contains(text(),'Search')]")
     public SelenideElement searchButton;
 
-    public HomePage typeSearchKeyword(String keyword){
+    @FindBy(css = "a[href='/homes']")
+    public SelenideElement homesMenuLink;
+
+    @FindBy(css = "ul.vertical.nav--submenu a[href='/state/az']")
+    public SelenideElement arizonaSubLink;
+
+    @FindBy(css = "ul.vertical.nav--submenu a[href='/state/ca']")
+    public SelenideElement californiaSubLink;
+
+    @FindBy(css = "ul.vertical.nav--submenu a[href='/state/co']")
+    public SelenideElement coloradoSubLink;
+
+    public HomePage typeSearchKeyword(String keyword) {
         searchBox.setValue(keyword);
         return this;
     }
 
-    public HomePage clickSearchButton(){
+    public HomePage clickSearchButton() {
         searchButton.click();
         return this;
     }
 
-    public SearchResultsPage searchWith(String keyword){
+    public SearchResultsPage searchWith(String keyword) {
         typeSearchKeyword(keyword)
-        .clickSearchButton();
+                .clickSearchButton();
         return page(SearchResultsPage.class);
     }
 
+    public void selectHomeSubMenuOption(HomesSubMenus subMenuName) {
+        homesMenuLink.hover();
 
+        switch (subMenuName) {
+
+            case ARIZONA:
+                arizonaSubLink.click();
+                break;
+            case COLORADO:
+                coloradoSubLink.click();
+                break;
+            case CALIFORNIA:
+                californiaSubLink.click();
+                break;
+        }
+    }
 
 
 }
