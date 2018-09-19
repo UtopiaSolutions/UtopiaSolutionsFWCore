@@ -1,7 +1,7 @@
-package com.meritage.tests.search;
+package com.meritage.tests.web;
 
-import com.meritage.pages.HomePage;
-import com.meritage.pages.SearchResultsPage;
+import com.meritage.pages.web.HomePage;
+import com.meritage.pages.web.SearchResultsPage;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Condition.text;
