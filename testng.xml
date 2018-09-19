@@ -8,9 +8,8 @@
 
     <test name="Test 1">
         <classes>
-            <!--class name="com.autmatika.tests.TheInternetTest"/>
-            <class name="com.autmatika.tests.withPages.GoogleTest"/-->
-            <class name="com.meritage.tests.web.SearchTest"/>
+            <!--<class name="com.meritage.tests.web.SearchTest"/>-->
+            <class name="com.meritage.tests.web.MenuOptionsTest"/>
         </classes>
     </test> <!-- TestNG Test -->
 </suite> <!-- TestNG Forum -->
