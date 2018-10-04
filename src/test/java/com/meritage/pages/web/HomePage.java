@@ -25,6 +25,24 @@ public class HomePage {
     @FindBy(css = "ul.vertical.nav--submenu a[href='/state/co']")
     public SelenideElement coloradoSubLink;
 
+    @FindBy(css = "ul.vertical.nav--submenu a[href='/state/fl']")
+    public SelenideElement floridaSubLink;
+
+    @FindBy(css = "ul.vertical.nav--submenu a[href='/state/ga']")
+    public SelenideElement georgiaSubLink;
+
+    @FindBy(css = "ul.vertical.nav--submenu a[href='/state/nc']")
+    public SelenideElement northcarolinaSubLink;
+
+    @FindBy(css = "ul.vertical.nav--submenu a[href='/state/sc']")
+    public SelenideElement southcarolinaSubLink;
+
+    @FindBy(css = "ul.vertical.nav--submenu a[href='/state/tn']")
+    public SelenideElement tennesseeSubLink;
+
+    @FindBy(css = "ul.vertical.nav--submenu a[href='/state/tx']")
+    public SelenideElement texasSubLink;
+
     public HomePage typeSearchKeyword(String keyword) {
         searchBox.setValue(keyword);
         return this;
@@ -55,7 +73,25 @@ public class HomePage {
             case CALIFORNIA:
                 californiaSubLink.click();
                 break;
-        }
+            case FLORIDA:
+                floridaSubLink.click();
+                break;
+            case GEORGIA:
+                georgiaSubLink.click();
+                break;
+            case NORTH_CAROLINA:
+                northcarolinaSubLink.click();
+                break;
+            case SOUTH_CAROLINA:
+                southcarolinaSubLink.click();
+                break;
+            case TENNESSEE:
+                tennesseeSubLink.click();
+                break;
+            case TEXAS:
+                texasSubLink.click();
+                break;
+    }
     }
 
 

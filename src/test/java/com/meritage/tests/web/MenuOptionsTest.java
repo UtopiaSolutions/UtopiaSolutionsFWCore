@@ -8,7 +8,8 @@ import static com.codeborne.selenide.Selenide.page;
 
 public class MenuOptionsTest {
 
-    public static final String MERITAGE_URL = "http://uat.meritagehomes.com";
+    //public static final String MERITAGE_URL = "http://uat.meritagehomes.com";
+    public static final String MERITAGE_URL = "http://meritagehomes.com";
 
     @Test
     public void testArizonaSubmenuOptionTakingToArizonaPage() {
@@ -47,6 +48,20 @@ public class MenuOptionsTest {
                 .selectHomeSubMenuOption(HomesSubMenus.COLORADO);
 
         page(ColoradoPage.class)
+                .verifyTitle()
+                .verifyURL()
+                .verifyHeading();
+    }
+
+    @Test
+    public void testFloridaSubmenuOptionTakingToFloridaPage() {
+
+        HomePage homePage = open(MERITAGE_URL, HomePage.class);
+
+        homePage
+                .selectHomeSubMenuOption(HomesSubMenus.FLORIDA);
+
+        page(FloridaPage.class)
                 .verifyTitle()
                 .verifyURL()
                 .verifyHeading();
