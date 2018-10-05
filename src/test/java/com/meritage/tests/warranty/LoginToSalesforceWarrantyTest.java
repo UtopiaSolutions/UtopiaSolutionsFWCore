@@ -14,7 +14,8 @@ import static com.codeborne.selenide.Selenide.page;
 public class LoginToSalesforceWarrantyTest {
 
 
-    @Test(dataProvider = "SalesforceWarrantyAuthentication", description = "This is a Meritage Homes test. This is used to smoke test the Warranty portal using the Selenide framework.", groups = "")
+    @Test(dataProvider = "SalesforceWarrantyAuthentication",
+            description = "This is a Meritage Homes test. This is used to smoke test the Warranty portal using the Selenide framework.")
     public void testLoginToSalesforceWarrantyWithValidCredentials(String name, String password) {
 
         SalesforceLoginPage salesforceLoginPage = open("http://test.salesforce.com", SalesforceLoginPage.class);
@@ -27,7 +28,6 @@ public class LoginToSalesforceWarrantyTest {
 
     @DataProvider(name = "SalesforceWarrantyAuthentication")
     private Object[][] getCredentials() {
-
         return new Object[][]{{"sanantonio.coordinator@meritagehomes.com.uat", "Meritage17"}};
     }
 }

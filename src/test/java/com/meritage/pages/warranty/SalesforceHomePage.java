@@ -1,9 +1,7 @@
 package com.meritage.pages.warranty;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
-import org.testng.Reporter;
 
 import static com.codeborne.selenide.Condition.visible;
 
