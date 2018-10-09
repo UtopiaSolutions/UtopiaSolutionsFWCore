@@ -66,4 +66,19 @@ public class MenuOptionsTest {
                 .verifyURL()
                 .verifyHeading();
     }
+
+    @Test
+    public void testGeorgiaSubmenuOptionTakingToGeorgiaPage() {
+
+        HomePage homePage = open(MERITAGE_URL, HomePage.class);
+
+        homePage
+                .selectHomeSubMenuOption(HomesSubMenus.GEORGIA);
+
+        page(GeorgiaPage.class)
+                .verifyTitle()
+                .verifyURL()
+                .verifyHeading();
+    }
+
 }
