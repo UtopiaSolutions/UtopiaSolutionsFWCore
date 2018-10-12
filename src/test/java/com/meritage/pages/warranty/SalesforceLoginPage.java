@@ -6,6 +6,7 @@ import org.testng.Reporter;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.page;
+import static com.meritage.utils.ConfigurationReader.getConfigValue;
 
 public class SalesforceLoginPage {
 
@@ -19,6 +20,12 @@ public class SalesforceLoginPage {
     private SelenideElement signInBtn;
 
 
+    /**
+     * Login to Salesforce application
+     * @param username
+     * @param password
+     * @return
+     */
     public SalesforceLoginPage loginToSalesforce(String username, String password) {
 
         userNameText.setValue(username);
@@ -29,9 +36,15 @@ public class SalesforceLoginPage {
         return this;
     }
 
+
+    /**
+     * Login to warranty page
+     * @param name
+     * @param password
+     */
     public void loginToSalesforceWarranty(String name, String password) {
 
-        SalesforceLoginPage salesforceLoginPage = open("http://test.salesforce.com", SalesforceLoginPage.class);
+        SalesforceLoginPage salesforceLoginPage = open(getConfigValue("app_url"), SalesforceLoginPage.class);
 
         salesforceLoginPage.loginToSalesforce(name, password);
 

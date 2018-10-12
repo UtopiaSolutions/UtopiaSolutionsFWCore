@@ -10,6 +10,7 @@ import utopia.sphnx.dataconversion.datagen.generator.DataGenerator;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.page;
+import static com.meritage.utils.ConfigurationReader.getConfigValue;
 
 public class LoginToSalesforceWarrantyTest {
 
@@ -18,11 +19,13 @@ public class LoginToSalesforceWarrantyTest {
             description = "This is a Meritage Homes test. This is used to smoke test the Warranty portal using the Selenide framework.")
     public void testLoginToSalesforceWarrantyWithValidCredentials(String name, String password) {
 
-        SalesforceLoginPage salesforceLoginPage = open("http://test.salesforce.com", SalesforceLoginPage.class);
+        SalesforceLoginPage salesforceLoginPage = open(getConfigValue("app_url"), SalesforceLoginPage.class);
 
-        salesforceLoginPage.loginToSalesforce(name, password);
+        salesforceLoginPage
+                .loginToSalesforce(name, password);
 
-        page(SalesforceHomePage.class).verifyHomePage();
+        page(SalesforceHomePage.class)
+                .verifyHomePage();
     }
 
 
