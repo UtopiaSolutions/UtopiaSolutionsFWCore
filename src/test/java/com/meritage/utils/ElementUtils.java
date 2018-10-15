@@ -20,4 +20,8 @@ public class ElementUtils {
             WebDriverRunner.getWebDriver().switchTo().frame(frameNo++);
         }
     }
+
+    public void clickOnElement(SelenideElement element){
+        element.click();
+    }
 }
