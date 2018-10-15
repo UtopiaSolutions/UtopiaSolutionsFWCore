@@ -7,33 +7,25 @@ import static com.codeborne.selenide.Selenide.title;
 import static com.codeborne.selenide.WebDriverRunner.url;
 import static org.testng.Assert.assertTrue;
 
-public class ArizonaPage {
-
-    String state = HomesSubMenus.ARIZONA.getState();
-    String stateCode = HomesSubMenus.ARIZONA.getStateCode();
+public class GeorgiaPage {
+    String state = HomesSubMenus.GEORGIA.getState();
+    String stateCode = HomesSubMenus.GEORGIA.getStateCode();
 
     @FindBy(css = "h1.prohibition")
     private SelenideElement heading;
 
-    @FindBy(xpath = "//a[@title='Learn more']")
-    private SelenideElement learnMoreBtn;
-
-    @FindBy(xpath = "//a[contains(text(),'Active Adult Metro')]")
-    private SelenideElement activeAdultLnk;
-
-    public ArizonaPage verifyTitle(){
+    public GeorgiaPage verifyTitle(){
         assertTrue(title().contains(state), "Title does not contains " + state);
         return this;
     }
 
-    public ArizonaPage verifyHeading(){
+    public GeorgiaPage verifyHeading(){
         heading.shouldHave(Condition.text(state));
         return this;
     }
 
-    public ArizonaPage verifyURL(){
+    public GeorgiaPage verifyURL(){
         assertTrue(url().contains(stateCode), "Page URL does not contain "+ stateCode);
         return this;
     }
-
 }

@@ -66,4 +66,74 @@ public class MenuOptionsTest {
                 .verifyURL()
                 .verifyHeading();
     }
+
+    @Test
+    public void testGeorgiaSubmenuOptionTakingToGeorgiaPage() {
+
+        HomePage homePage = open(MERITAGE_URL, HomePage.class);
+
+        homePage
+                .selectHomeSubMenuOption(HomesSubMenus.GEORGIA);
+
+        page(GeorgiaPage.class)
+                .verifyTitle()
+                .verifyURL()
+                .verifyHeading();
+    }
+
+    @Test
+    public void testNorthCarolinaSubmenuOptionTakingToNorthCarolinaPage() {
+
+        HomePage homePage = open(MERITAGE_URL, HomePage.class);
+
+        homePage
+                .selectHomeSubMenuOption(HomesSubMenus.NORTH_CAROLINA);
+
+        page(NorthCarolinaPage.class)
+                .verifyTitle()
+                .verifyURL()
+                .verifyHeading();
+    }
+
+    @Test
+    public void testSouthCarolinaSubmenuOptionTakingToSouthCarolinaPage() {
+
+        HomePage homePage = open(MERITAGE_URL, HomePage.class);
+
+        homePage
+                .selectHomeSubMenuOption(HomesSubMenus.SOUTH_CAROLINA);
+
+        page(SouthCarolinaPage.class)
+                .verifyTitle()
+                .verifyURL()
+                .verifyHeading();
+    }
+
+    @Test
+    public void testTennesseeSubmenuOptionTakingToTennesseePage() {
+
+        HomePage homePage = open(MERITAGE_URL, HomePage.class);
+
+        homePage
+                .selectHomeSubMenuOption(HomesSubMenus.TENNESSEE);
+
+        page(TennesseePage.class)
+                .verifyTitle()
+                .verifyURL()
+                .verifyHeading();
+    }
+    @Test
+
+    public void testTexasSubmenuOptionTakingToTexasPage() {
+
+        HomePage homePage = open(MERITAGE_URL, HomePage.class);
+
+        homePage
+                .selectHomeSubMenuOption(HomesSubMenus.TEXAS);
+
+        page(TexasPage.class)
+                .verifyTitle()
+                .verifyURL()
+                .verifyHeading();
+    }
 }
