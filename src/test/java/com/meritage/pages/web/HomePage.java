@@ -2,7 +2,6 @@ package com.meritage.pages.web;
 
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
-
 import static com.codeborne.selenide.Selenide.page;
 
 public class HomePage {
