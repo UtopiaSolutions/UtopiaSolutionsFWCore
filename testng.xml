@@ -9,8 +9,10 @@
     <test name="Test 1">
         <classes>
             <!--<class name="com.meritage.tests.web.SearchTest"/>-->
-            <class name="com.meritage.tests.warranty.WarrantySearchTest"/>
+            <!--<class name="com.meritage.tests.warranty.WarrantySearchTest"/>-->
             <class name="com.meritage.tests.warranty.LoginToSalesforceWarrantyTest"/>
+            <class name="com.meritage.tests.web.az.ArizonaTest"/>
+            <class name="com.meritage.tests.web.ca.CaliforniaTest"/>
         </classes>
     </test> <!-- TestNG Test -->
 </suite> <!-- TestNG Forum -->
