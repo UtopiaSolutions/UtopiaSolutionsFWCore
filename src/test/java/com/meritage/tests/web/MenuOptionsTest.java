@@ -1,12 +1,13 @@
 package com.meritage.tests.web;
 
 import com.meritage.pages.web.*;
+import com.meritage.tests.BaseUITest;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.page;
 
-public class MenuOptionsTest {
+public class MenuOptionsTest  extends BaseUITest {
 
     //public static final String MERITAGE_URL = "http://uat.meritagehomes.com";
     public static final String MERITAGE_URL = "http://meritagehomes.com";

@@ -7,6 +7,10 @@ import com.codeborne.selenide.SelenideElement;
 import com.meritage.pages.web.az.CommunityData;
 import org.hamcrest.Matchers;
 import org.openqa.selenium.support.FindBy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -21,6 +25,8 @@ import static org.testng.Assert.assertEqualsNoOrder;
 import static org.testng.Assert.assertTrue;
 
 public class ArizonaPage extends BaseUITestPage{
+
+    private final Logger log = LoggerFactory.getLogger(ArizonaPage.class);
 
     private String state = HomesSubMenus.ARIZONA.getState();
     private String stateCode = HomesSubMenus.ARIZONA.getStateCode();
@@ -47,38 +53,45 @@ public class ArizonaPage extends BaseUITestPage{
     }
 
     public ArizonaPage hasFollowingCommunities(List<String> communities){
+        log.info("Verify Arizona has communities {}", communities);
         $$("h3.community--name").shouldHave(CollectionCondition.textsInAnyOrder(communities));
         return this;
     }
 
     public ArizonaPage community(String communityAriaLabel){
+        log.info("Verify Arizona has community {}", communityAriaLabel);
         activeCommunity = getCommunityDataObject(communityAriaLabel);
         return this;
     }
 
     public ArizonaPage hasCities(String ... cities){
+        log.info("Verify Arizona has cities {}", cities);
         activeCommunity.getCities().replaceAll(String::trim);
         assertThat(activeCommunity.getCities(), Matchers.is(Arrays.asList(cities)));
         return this;
     }
 
     public ArizonaPage hasCityAreas(String ... cityAreas){
+        log.info("Verify Arizona has areas {}", cityAreas);
         activeCommunity.getCityAreas().replaceAll(String::trim);
         assertThat(activeCommunity.getCityAreas(), Matchers.is(Arrays.asList(cityAreas)));
         return this;
     }
 
     public ArizonaPage hasCommunitiesEqualsTo(int communities){
+        log.info("Verify Arizona has communities {}", communities);
         assertThat(activeCommunity.getCommunities(), equalTo(communities));
         return this;
     }
 
     public ArizonaPage hasFloorPlansEqualsTo(int floorPlans){
+        log.info("Verify Arizona has floorPlans {}", floorPlans);
         assertThat(activeCommunity.getFloorPlans(), equalTo(floorPlans));
         return this;
     }
 
     public ArizonaPage hasQuickMovieInHomesEqualsTo(int moveInHomes){
+        log.info("Verify Arizona has moveInHomes {}", moveInHomes);
         assertThat(activeCommunity.getQuickMoveInHomes(), equalTo(moveInHomes));
         return this;
     }

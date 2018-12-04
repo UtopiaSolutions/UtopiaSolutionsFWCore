@@ -2,13 +2,14 @@ package com.meritage.tests.web;
 
 import com.meritage.pages.web.HomePage;
 import com.meritage.pages.web.SearchResultsPage;
+import com.meritage.tests.BaseUITest;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.page;
 
-public class SearchTest {
+public class SearchTest  extends BaseUITest {
 
     public static final String MERITAGE_URL = "http://uat.meritagehomes.com";
 

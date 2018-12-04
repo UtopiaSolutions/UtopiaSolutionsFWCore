@@ -3,16 +3,16 @@ package com.meritage.tests.warranty;
 import com.meritage.pages.warranty.SalesforceHomePage;
 import com.meritage.pages.warranty.SalesforceLoginPage;
 import com.autmatika.tests.withPages.theInternet.HomePage;
+import com.meritage.tests.BaseUITest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import utopia.sphnx.dataconversion.datagen.generator.DataGenerator;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.page;
 import static com.meritage.utils.ConfigurationReader.getConfigValue;
 
-public class LoginToSalesforceWarrantyTest {
+public class LoginToSalesforceWarrantyTest extends BaseUITest {
 
 
     @Test(dataProvider = "SalesforceWarrantyAuthentication",
