@@ -1,10 +1,16 @@
 package com.meritage.pages.web;
 
 import com.codeborne.selenide.SelenideElement;
+import com.meritage.tests.web.az.ArizonaTest;
 import org.openqa.selenium.support.FindBy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import static com.codeborne.selenide.Selenide.page;
 
 public class HomePage {
+
+    private final Logger log = LoggerFactory.getLogger(HomePage.class);
 
     @FindBy(id = "quick-home-search--search-field")
     public SelenideElement searchBox;
@@ -59,8 +65,11 @@ public class HomePage {
     }
 
     public void selectHomeSubMenuOption(HomesSubMenus subMenuName) {
+
+        log.info("Hovering on the Homes menu link");
         homesMenuLink.hover();
 
+        log.info("Clicking on {}", subMenuName);
         switch (subMenuName) {
 
             case ARIZONA:
@@ -90,7 +99,7 @@ public class HomePage {
             case TEXAS:
                 texasSubLink.click();
                 break;
-    }
+        }
     }
 
 
