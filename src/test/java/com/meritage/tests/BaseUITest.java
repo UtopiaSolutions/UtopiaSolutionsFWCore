@@ -1,10 +1,15 @@
 package com.meritage.tests;
 
+import com.meritage.pages.web.ArizonaPage;
 import com.usf.TestLogHelper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
 public class BaseUITest {
+
+    private final Logger log = LoggerFactory.getLogger(ArizonaPage.class);
 
     protected String testId ="";
     @BeforeMethod

@@ -57,7 +57,7 @@ public class WarrantySearchPage {
      */
     public WebElement getTableCellElement(int row, int col){
         return $("table.list")
-                .findElementsByTagName("tr")
+                .findElements(By.tagName("tr"))
                 .get(row)
                 .findElements(By.tagName("td"))
                 .get(col);

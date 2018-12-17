@@ -1,7 +1,9 @@
 package com.meritage.pages.web;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
 import com.meritage.pages.web.az.CommunityData;
+import org.openqa.selenium.By;
 
 import java.util.Arrays;
 import java.util.List;
@@ -10,16 +12,16 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class BaseUITestPage {
 
-
     protected CommunityData getCommunityDataObject(String ariaLabel){
         SelenideElement activeAdultElement = $(String.format("div[aria-label='%s']", ariaLabel ));
-        String activeAdultCommunityName = activeAdultElement.findElementByCssSelector("h3.community--name>a").getText().trim();
-        String cities = activeAdultElement.findElementByCssSelector("p.community--description").getText().trim();
-        String cityAreas = activeAdultElement.findElementsByCssSelector("p.community--description").get(1).getText().trim();
-        int communitiesCount = Integer.valueOf(activeAdultElement.findElementsByCssSelector("span.community--community-count--item>strong").get(0).getText().trim());
-        int floorPlans = Integer.valueOf(activeAdultElement.findElementsByCssSelector("span.community--community-count--item>strong").get(1).getText().trim());
-        int quickMoveInHomes = Integer.valueOf(activeAdultElement.findElementsByCssSelector("span.community--community-count--item>strong").get(2).getText().trim());
+        activeAdultElement.scrollTo();
 
+        String activeAdultCommunityName = activeAdultElement.find("h3.community--name>a").getText().trim();
+        String cities = activeAdultElement.find("p.community--description").getText().trim();
+        String cityAreas = activeAdultElement.findElements(By.cssSelector("p.community--description")).get(1).getText().trim();
+        int communitiesCount = Integer.valueOf(activeAdultElement.findElements(By.cssSelector("span.community--community-count--item>strong")).get(0).getText().trim());
+        int floorPlans = Integer.valueOf(activeAdultElement.findElements(By.cssSelector("span.community--community-count--item>strong")).get(1).getText().trim());
+        int quickMoveInHomes = Integer.valueOf(activeAdultElement.findElements(By.cssSelector("span.community--community-count--item>strong")).get(2).getText().trim());
 
         List<String> citiesList = Arrays.asList("");
         List<String> cityAreasList = Arrays.asList("");

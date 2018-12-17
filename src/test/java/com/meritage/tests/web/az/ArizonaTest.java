@@ -4,11 +4,13 @@ import com.meritage.pages.web.ArizonaPage;
 import com.meritage.pages.web.HomePage;
 import com.meritage.pages.web.HomesSubMenus;
 import com.meritage.tests.BaseUITest;
+import org.hamcrest.Matchers;
 import org.testng.annotations.Test;
 import java.util.Arrays;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.page;
 import static com.meritage.utils.ConfigurationReader.getConfigValue;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ArizonaTest extends BaseUITest {
 
