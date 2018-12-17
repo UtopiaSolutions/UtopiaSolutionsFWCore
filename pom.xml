@@ -22,36 +22,12 @@
 
 
     <dependencies>
-        <!--<dependency>-->
-            <!--<groupId>com.codeborne</groupId>-->
-            <!--<artifactId>selenide</artifactId>-->
-            <!--<version>4.11.1</version>-->
-        <!--</dependency>-->
-
-        <!--<dependency>-->
-            <!--<groupId>com.github.hemano</groupId>-->
-            <!--<artifactId>selenide</artifactId>-->
-            <!--<version>24d476</version>-->
-        <!--</dependency>-->
 
         <dependency>
             <groupId>com.codeborne</groupId>
             <artifactId>selenide</artifactId>
             <version>5.1.0</version>
         </dependency>
-
-
-        <!--<dependency>-->
-            <!--<groupId>com.aventstack</groupId>-->
-            <!--<artifactId>extentreports</artifactId>-->
-            <!--<version>4.0.1</version>-->
-        <!--</dependency>-->
-
-        <!--<dependency>-->
-            <!--<groupId>com.github.hemano</groupId>-->
-            <!--<artifactId>selenide</artifactId>-->
-            <!--<version>abdd67</version>-->
-        <!--</dependency>-->
 
         <dependency>
             <groupId>com.aventstack</groupId>

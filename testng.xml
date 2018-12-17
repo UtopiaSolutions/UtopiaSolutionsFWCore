@@ -1,26 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite thread-count="10" verbose="2" name="TestNG Forum" parallel="methods">
-
-    <!--<listeners>-->
-        <!--<listener class-name="com.codeborne.selenide.testng.ExtentTestNgListener"/>-->
-    <!--</listeners>-->
-
-    <!--<listeners>-->
-        <!--<listener class-name="com.codeborne.selenide.testng.listeners.ExtentITestClassListener"></listener>-->
-    <!--</listeners>-->
+<suite thread-count="10" verbose="2" name="Meritage test suite" parallel="methods">
 
     <listeners>
         <listener class-name="com.usf.ExtentListenerAdapter"></listener>
     </listeners>
 
-    <test name="Test 1">
+    <test name="Meritage Test">
         <classes>
             <!--<class name="com.meritage.tests.web.SearchTest"/>-->
             <!--<class name="com.meritage.tests.warranty.WarrantySearchTest"/>-->
-            <class name="com.meritage.tests.warranty.LoginToSalesforceWarrantyTest"/>
+            <!--<class name="com.meritage.tests.warranty.LoginToSalesforceWarrantyTest"/>-->
             <class name="com.meritage.tests.web.az.ArizonaTest"/>
             <class name="com.meritage.tests.web.ca.CaliforniaTest"/>
         </classes>
-    </test> <!-- TestNG Test -->
-</suite> <!-- TestNG Forum -->
+    </test>
+</suite>

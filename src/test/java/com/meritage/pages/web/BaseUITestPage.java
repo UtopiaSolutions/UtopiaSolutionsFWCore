@@ -14,7 +14,6 @@ public class BaseUITestPage {
 
     protected CommunityData getCommunityDataObject(String ariaLabel){
         SelenideElement activeAdultElement = $(String.format("div[aria-label='%s']", ariaLabel ));
-        activeAdultElement.scrollTo();
 
         String activeAdultCommunityName = activeAdultElement.find("h3.community--name>a").getText().trim();
         String cities = activeAdultElement.find("p.community--description").getText().trim();
