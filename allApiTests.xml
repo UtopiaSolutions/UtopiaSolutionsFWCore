@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite verbose="2" name="All APIs test suite">
+
+    <listeners>
+        <listener class-name="com.usf.ExtentListenerAdapter"></listener>
+    </listeners>
+
+    <test name="Fake Users">
+        <classes>
+            <class name="com.fakeUsers.tests.CreateUserAPITest"/>
+            <class name="com.fakeUsers.tests.ListUsersAPITest"/>
+        </classes>
+    </test>
+</suite>
