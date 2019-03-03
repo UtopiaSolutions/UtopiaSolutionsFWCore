@@ -38,6 +38,14 @@
         <styles>
             <![CDATA[
 
+                img {
+                  display: block;
+                  max-width:230px;
+                  max-height:95px;
+                  width: auto;
+                  height: auto;
+                }
+
             ]]>
         </styles>
     </configuration>
