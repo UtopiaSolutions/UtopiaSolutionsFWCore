@@ -18,9 +18,8 @@ public class TestLogHelper
      * Adds the test name to MDC so that sift appender can use it and log the new
      * log events to a different file
      * @param name name of the new log file
-     * @throws Exception
      */
-    public static void startTestLogging(String name) throws Exception {
+    public static void startTestLogging(String name){
         MDC.put(LOG_FILE_NAME, name);
     }
 
