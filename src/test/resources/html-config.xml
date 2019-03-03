@@ -30,6 +30,13 @@
             <![CDATA[
                 $(document).ready(function() {
 
+                        var max = 100;
+                        $('img.r-img').each(function() {
+                            if ($(this).width() > max) {
+                                $(this).width(max);
+                            }
+                        });
+
                 });
             ]]>
         </scripts>
