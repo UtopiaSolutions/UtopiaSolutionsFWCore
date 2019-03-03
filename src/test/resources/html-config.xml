@@ -30,12 +30,12 @@
             <![CDATA[
                 $(document).ready(function() {
 
-                        var max = 100;
-                        $('img.r-img').each(function() {
-                            if ($(this).width() > max) {
-                                $(this).width(max);
-                            }
-                        });
+                    var imgs = document.getElementsByClassName("r-img");
+                    var imgSrcs = [];
+
+                    for (var i = 0; i < imgs.length; i++) {
+                        imgs[i].style="max-height: 100px; max-width: 100px;";
+                    }
 
                 });
             ]]>
@@ -44,6 +44,7 @@
         <!-- custom styles -->
         <styles>
             <![CDATA[
+
 
             ]]>
         </styles>
