@@ -19,70 +19,49 @@ public class CoreUITest {
     public void testSetUp(ITestResult result) throws Exception {
         //Log that we are going to start a test
         TestLogHelper.startTestLogging(result.getTestName());
-
-        log.debug("Running test: " + result.getTestName());
+        log.debug("Starting test class: " + result.getTestClass());
     }
 
     @BeforeMethod
     public void methodSetUp(ITestResult result) throws Exception {
         //start logging to test specific log file
         TestLogHelper.startTestLogging(result.getMethod().getMethodName());
-
-        log.debug("Running method: " + result.getMethod().getMethodName());
+        log.info("Execution of test {} has started....", result.getMethod().getMethodName());
     }
 
     @AfterMethod
     public void methodCleanUp(ITestResult result) throws Exception {
         try {
-            //
-            //Do some cleanup specific stuff here
-            //
+            log.info("Ending test: " + result.getMethod().getMethodName());
+            log.info("Test result: " + getTestResultText(result));
         } finally {
-            //stop method logging to test specific file
             TestLogHelper.stopTestLogging();
         }
     }
 
     @AfterTest
     public void testCleanUp(ITestResult result) throws Exception {
-        String testResult;
-
-        if(result.getStatus() == result.SUCCESS)
-
-        try {
-            log.debug("Ending test: " + result.getTestName() + " Test result: " + getTestResultText(result.getStatus()));
-        } finally {
-            //stop test logging to test specific file
-            TestLogHelper.stopTestLogging();
-        }
+        log.debug("Ending test class: " + result.getTestName());
+        //stop test logging to test specific file
+        TestLogHelper.stopTestLogging();
     }
 
     public String getTestId() {
         return ((testId == null) ? (this.getClass().getName()) : testId);
     }
 
-    public String getTestResultText(Integer result) {
+    public String getTestResultText(ITestResult result) {
 
-        String resultText = "";
-
-        switch (result) {
+        switch (result.getStatus()) {
             case ITestResult.SUCCESS:
-                resultText = "PASS";
-                // my expected functionality here when passed
-
+                return "PASS";
             case ITestResult.FAILURE:
-                resultText = "FAIL";
-                // my expected functionality here when passed
-
+                return "FAIL";
             case ITestResult.SKIP:
-                resultText = "SKIP";
-                // my expected functionality here when passed
-
+                return "SKIP";
             default:
-                //throw new RuntimeException("INVALID STATUS");
-                resultText = "INVALID STATUS";
+                return "INVALID STATUS";
         }
-        return resultText;
     }
 
 }
