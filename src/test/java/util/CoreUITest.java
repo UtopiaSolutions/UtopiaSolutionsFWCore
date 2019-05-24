@@ -1,4 +1,4 @@
-package com.usf.utils;
+package util;
 
 import com.usf.TestLogHelper;
 import org.slf4j.Logger;
