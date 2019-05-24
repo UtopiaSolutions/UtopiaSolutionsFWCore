@@ -10,7 +10,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.AfterTest;
 
 public class CoreUITest {
-    //HappyTest
+    
     private final Logger log = LoggerFactory.getLogger(CoreUITest.class);
 
     protected String testId ="";
