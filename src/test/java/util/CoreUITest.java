@@ -1,4 +1,4 @@
-package com.usf.utils;
+package util;
 
 import com.usf.TestLogHelper;
 import org.slf4j.Logger;
@@ -10,7 +10,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.AfterTest;
 
 public class CoreUITest {
-
+    
     private final Logger log = LoggerFactory.getLogger(CoreUITest.class);
 
     protected String testId ="";

@@ -1,14 +1,10 @@
-package com.fakeUsers.util;
+package util;
 
-import com.google.common.collect.ImmutableList;
 import com.usf.rest.RestUtil;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
