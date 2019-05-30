@@ -1,4 +1,4 @@
-package com.usf;
+package test;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
