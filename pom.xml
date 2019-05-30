@@ -92,9 +92,6 @@
                 </configuration>
             </plugin>
         </plugins>
-        
-        <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
-        <testSourceDirectory>${project.basedir}/src/test/java</testSourceDirectory>
 
     </build>
 
