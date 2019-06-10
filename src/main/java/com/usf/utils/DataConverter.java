@@ -8,6 +8,10 @@ public class DataConverter {
         return key;
     }
 
+    public static String getKeywordValue(String key) {
+        return key;
+    }
+
     public static String getBirthdayValue(String key) {
         return key;
     }
