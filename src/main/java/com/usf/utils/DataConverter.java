@@ -8,5 +8,7 @@ public class DataConverter {
         return key;
     }
 
-
+    public static String getBirthdayValue(String key) {
+        return key;
+    }
 }
