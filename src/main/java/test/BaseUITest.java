@@ -22,8 +22,9 @@ public class BaseUITest {
             properties = new ConfigurationReader("client_config");
         } catch (Exception e) {
             log.warn("No Configuration File found!");
+        } finally {
+            log.debug("Starting test class...");
         }
-        log.debug("Starting test class...");
     }
 
     @AfterTest
