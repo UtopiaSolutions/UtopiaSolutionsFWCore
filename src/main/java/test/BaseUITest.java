@@ -12,13 +12,19 @@ import org.testng.annotations.BeforeTest;
 
 
 public class BaseUITest {
-    protected ConfigurationReader properties = new ConfigurationReader("client_config");
+    protected ConfigurationReader properties;
 
     private final Logger log = LoggerFactory.getLogger(BaseUITest.class);
 
     @BeforeTest
     public void beforeTest() {
-        log.debug("Starting test class...");
+        try {
+            properties = new ConfigurationReader("client_config");
+        } catch (Exception e) {
+            log.warn("No Configuration File found!");
+        } finally {
+            log.debug("Starting test class...");
+        }
     }
 
     @AfterTest
