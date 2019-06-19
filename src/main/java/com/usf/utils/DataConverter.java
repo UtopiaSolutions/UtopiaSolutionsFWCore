@@ -13,6 +13,9 @@ import me.xdrop.jrand.generators.text.LoremGenerator;
 import me.xdrop.jrand.model.money.CardType;
 import me.xdrop.jrand.model.person.Gender;
 import me.xdrop.jrand.model.person.PersonType;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 import java.util.Random;
 
@@ -54,6 +57,14 @@ public class DataConverter {
     public enum CardOption {
         FORMATTED, COMMON, COMMON_FORMATTED,
         FULL_YEAR, EXPIRED
+    }
+
+    public enum DateOption {
+        FUTURE, PAST
+    }
+
+    public enum TimeOption {
+        DAYS, WEEKS, MONTHS, YEARS
     }
 
     //-------------- BASIC --------------------
@@ -216,13 +227,257 @@ public class DataConverter {
         }
     }
 
-    // TODO - Add birthday range, and range with formatting
+    /**
+     * Generate a random birth date from a random age within an age range.
+     *
+     * @param age1 - the minimum age
+     * @param age2 - the maximum age
+     * @return String in MM/dd/yy format
+     */
+    public static String generateBirthday(int age1, int age2) {
+        DateTime now = new DateTime();
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("MM/dd/yy");
 
+        int randomAgeBetween = generateAge(age1, age2);
+        int dobYear = now.minusYears(randomAgeBetween).getYear();
+        DateTime yearBegin = new DateTime(dobYear, 1, 1, 0, 0);
+        long mills = getRandomTimeBetweenTwoDates(now.minusYears(randomAgeBetween).getMillis(), yearBegin.getMillis());
+
+        return formatter.print(new DateTime(mills));
+    }
+
+    /**
+     * Generate a random birth date in a specified format,
+     * from a random age within an age range.
+     *
+     * @param age1   - the minimum age
+     * @param age2   - the maximum age
+     * @param format - the date format
+     * @return String in specified format
+     */
+    public static String generateBirthday(int age1, int age2, String format) {
+        DateTime now = new DateTime();
+        DateTimeFormatter formatter = DateTimeFormat.forPattern(format);
+
+        int randomAgeBetween = generateAge(age1, age2);
+        int dobYear = now.minusYears(randomAgeBetween).getYear();
+        DateTime yearBegin = new DateTime(dobYear, 1, 1, 0, 0);
+        long mills = getRandomTimeBetweenTwoDates(now.minusYears(randomAgeBetween).getMillis(), yearBegin.getMillis());
+
+        return formatter.print(new DateTime(mills));
+    }
 
     // TODO - Get date from today + / - time amount
 
-    // TODO - Get date from specified date + / - time amount
+    /**
+     * Generate today's date.
+     *
+     * @return String in MM/dd/yy format
+     */
+    public static String generateDate() {
+        DateTime now = new DateTime();
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("MM/dd/yy");
 
+        return formatter.print(now);
+    }
+
+    /**
+     * Generate today's date in a specified format.
+     *
+     * @param format - the date format
+     * @return String in specified format
+     */
+    public static String generateDate(String format) {
+        DateTime now = new DateTime();
+        DateTimeFormatter formatter = DateTimeFormat.forPattern(format);
+
+        return formatter.print(now);
+    }
+
+    /**
+     * Generate a random future or past date relative to today's date.
+     *
+     * @param amount    - the amount of time from today's date
+     * @param duration  - DAYS, WEEKS, MONTHS, YEARS
+     * @param direction - FUTURE, PAST
+     * @return String in MM/dd/yy format
+     */
+    public static String generateDate(int amount, TimeOption duration, DateOption direction) {
+        DateTime now = new DateTime();
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("MM/dd/yy");
+
+        switch (direction) {
+            case FUTURE:
+                switch (duration) {
+                    case DAYS:
+                        return formatter.print(now.plusDays(amount));
+                    case WEEKS:
+                        return formatter.print(now.plusWeeks(amount));
+                    case MONTHS:
+                        return formatter.print(now.plusMonths(amount));
+                    case YEARS:
+                        return formatter.print(now.plusYears(amount));
+                    default:
+                        return formatter.print(now);
+                }
+            case PAST:
+                switch (duration) {
+                    case DAYS:
+                        return formatter.print(now.minusDays(amount));
+                    case WEEKS:
+                        return formatter.print(now.minusWeeks(amount));
+                    case MONTHS:
+                        return formatter.print(now.minusMonths(amount));
+                    case YEARS:
+                        return formatter.print(now.minusYears(amount));
+                    default:
+                        return formatter.print(now);
+                }
+            default:
+                return formatter.print(now);
+        }
+    }
+
+    /**
+     * Generate a random future or past date in a specified format,
+     * relative to today's date.
+     *
+     * @param amount    - the amount of time from today's date
+     * @param duration  - DAYS, WEEKS, MONTHS, YEARS
+     * @param direction - FUTURE, PAST
+     * @param format    - the date format
+     * @return String in specified format
+     */
+    public static String generateDate(int amount, TimeOption duration, DateOption direction, String format) {
+        DateTime now = new DateTime();
+        DateTimeFormatter formatter = DateTimeFormat.forPattern(format);
+
+        switch (direction) {
+            case FUTURE:
+                switch (duration) {
+                    case DAYS:
+                        return formatter.print(now.plusDays(amount));
+                    case WEEKS:
+                        return formatter.print(now.plusWeeks(amount));
+                    case MONTHS:
+                        return formatter.print(now.plusMonths(amount));
+                    case YEARS:
+                        return formatter.print(now.plusYears(amount));
+                    default:
+                        return formatter.print(now);
+                }
+            case PAST:
+                switch (duration) {
+                    case DAYS:
+                        return formatter.print(now.minusDays(amount));
+                    case WEEKS:
+                        return formatter.print(now.minusWeeks(amount));
+                    case MONTHS:
+                        return formatter.print(now.minusMonths(amount));
+                    case YEARS:
+                        return formatter.print(now.minusYears(amount));
+                    default:
+                        return formatter.print(now);
+                }
+            default:
+                return formatter.print(now);
+        }
+    }
+
+    /**
+     * Generate a random future or past date in a specified format,
+     * relative to a specified date of origin.
+     *
+     * @param date      - the date of origin, in MM/dd/yy
+     * @param amount    - the amount of time from today's date
+     * @param duration  - DAYS, WEEKS, MONTHS, YEARS
+     * @param direction - FUTURE, PAST
+     * @return String in MM/dd/yy format
+     */
+    public static String generateDate(String date, int amount, TimeOption duration, DateOption direction) {
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("MM/dd/yy");
+        DateTime origin = formatter.parseDateTime(date);
+
+        switch (direction) {
+            case FUTURE:
+                switch (duration) {
+                    case DAYS:
+                        return formatter.print(origin.plusDays(amount));
+                    case WEEKS:
+                        return formatter.print(origin.plusWeeks(amount));
+                    case MONTHS:
+                        return formatter.print(origin.plusMonths(amount));
+                    case YEARS:
+                        return formatter.print(origin.plusYears(amount));
+                    default:
+                        return formatter.print(origin);
+                }
+            case PAST:
+                switch (duration) {
+                    case DAYS:
+                        return formatter.print(origin.minusDays(amount));
+                    case WEEKS:
+                        return formatter.print(origin.minusWeeks(amount));
+                    case MONTHS:
+                        return formatter.print(origin.minusMonths(amount));
+                    case YEARS:
+                        return formatter.print(origin.minusYears(amount));
+                    default:
+                        return formatter.print(origin);
+                }
+            default:
+                return formatter.print(origin);
+        }
+    }
+
+
+    /**
+     * Generate a random future or past date in a specified format,
+     * relative to a specified date of origin.  Date of origin format MUST
+     * be input as specified format.
+     *
+     * @param date      - the date of origin, input as format
+     * @param amount    - the amount of time from today's date
+     * @param duration  - DAYS, WEEKS, MONTHS, YEARS
+     * @param direction - FUTURE, PAST
+     * @param format    - the date format
+     * @return String in specified format
+     */
+    public static String generateDate(String date, int amount, TimeOption duration, DateOption direction, String format) {
+        DateTimeFormatter formatter = DateTimeFormat.forPattern(format);
+        DateTime origin = formatter.parseDateTime(date);
+
+        switch (direction) {
+            case FUTURE:
+                switch (duration) {
+                    case DAYS:
+                        return formatter.print(origin.plusDays(amount));
+                    case WEEKS:
+                        return formatter.print(origin.plusWeeks(amount));
+                    case MONTHS:
+                        return formatter.print(origin.plusMonths(amount));
+                    case YEARS:
+                        return formatter.print(origin.plusYears(amount));
+                    default:
+                        return formatter.print(origin);
+                }
+            case PAST:
+                switch (duration) {
+                    case DAYS:
+                        return formatter.print(origin.minusDays(amount));
+                    case WEEKS:
+                        return formatter.print(origin.minusWeeks(amount));
+                    case MONTHS:
+                        return formatter.print(origin.minusMonths(amount));
+                    case YEARS:
+                        return formatter.print(origin.minusYears(amount));
+                    default:
+                        return formatter.print(origin);
+                }
+            default:
+                return formatter.print(origin);
+        }
+    }
 
     //-------------- MONEY -------------------
 
@@ -264,7 +519,7 @@ public class DataConverter {
         }
     }
 
-    //TODO - add Generate Valid <cc company> Number methods
+    //TODO - ????? add Generate Valid <cc company> Number methods ?????
 
     public static String generateCardIssueDate() {
         issueDate = JRand.issueDate();
@@ -312,4 +567,10 @@ public class DataConverter {
     }
 
     // TODO:  J-FAKER ADDRESS FUNCTIONALITY
+
+
+    private static long getRandomTimeBetweenTwoDates(long endTime, long beginTime) {
+        long diff = endTime - beginTime + 1L;
+        return beginTime + (long) (Math.random() * (double) diff);
+    }
 }

@@ -1,14 +1,13 @@
 package test;
 
 import com.usf.utils.DataConverter;
-import me.xdrop.jrand.model.person.Gender;
 import org.testng.annotations.Test;
 
 public class NewFeatureTest {
 
     @Test
     public static void featureTest() {
-        System.out.println(DataConverter.generateName(Gender.MALE));
 
+        System.out.println(DataConverter.generateDate("05/05/2085",20, DataConverter.TimeOption.YEARS, DataConverter.DateOption.FUTURE, "dd/MM/YYYY"));
     }
 }
