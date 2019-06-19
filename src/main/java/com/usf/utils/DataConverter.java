@@ -188,15 +188,15 @@ public class DataConverter {
         birthday = JRand.birthday();
         switch (option) {
             case CHILD:
-                return birthday.child().genString();
+                return birthday.american().child().genString();
             case TEEN:
-                return birthday.teen().genString();
+                return birthday.american().teen().genString();
             case ADULT:
-                return birthday.adult().genString();
+                return birthday.american().adult().genString();
             case SENIOR:
-                return birthday.senior().genString();
+                return birthday.american().senior().genString();
             default:
-                return birthday.type(PersonType.GENERIC).genString();
+                return birthday.american().type(PersonType.GENERIC).genString();
         }
     }
 
@@ -215,6 +215,14 @@ public class DataConverter {
                 return birthday.type(PersonType.GENERIC).genString();
         }
     }
+
+    // TODO - Add birthday range, and range with formatting
+
+
+    // TODO - Get date from today + / - time amount
+
+    // TODO - Get date from specified date + / - time amount
+
 
     //-------------- MONEY -------------------
 
@@ -255,6 +263,8 @@ public class DataConverter {
             return cardNo.cardType(cardType).gen();
         }
     }
+
+    //TODO - add Generate Valid <cc company> Number methods
 
     public static String generateCardIssueDate() {
         issueDate = JRand.issueDate();
@@ -300,4 +310,6 @@ public class DataConverter {
             return cvv.gen();
         }
     }
+
+    // TODO:  J-FAKER ADDRESS FUNCTIONALITY
 }
