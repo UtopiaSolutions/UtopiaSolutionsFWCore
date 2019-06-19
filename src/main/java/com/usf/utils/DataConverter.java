@@ -69,26 +69,58 @@ public class DataConverter {
 
     //-------------- BASIC --------------------
 
+    /**
+     * Generate a random boolean.
+     *
+     * @return a random boolean
+     */
     public static boolean generateBoolean() {
         bool = JRand.bool();
         return bool.gen();
     }
 
+    /**
+     * Generate a random decimal number.
+     *
+     * @return a random decimal number as a String
+     */
     public static String generateDecimal() {
         decimal = JRand.decimal();
         return decimal.gen();
     }
 
+    /**
+     * Generate a random decimal number within a provided range.
+     *
+     * @return a random decimal number as a String
+     */
     public static String generateDecimal(double min, double max) {
         decimal = JRand.decimal();
         return decimal.range(min, max).gen();
     }
 
+    /**
+     * Generate a random String.
+     *
+     * @return a random String of unspecified length.
+     */
     public static String generateRandomString() {
         string = JRand.string();
         return string.gen();
     }
 
+
+    /**
+     * Generate a random String of specified data.
+     *
+     * @param option ALPHA (alphabet only)
+     *               DIGIT (numbers only)
+     *               SYMBOL (symbols only)
+     *               WORD (one single word)
+     *               SENTENCE (one single sentence)
+     *               PARAGRAPH (one single paragraph)
+     * @return specified data as a String
+     */
     public static String generateRandomString(StringOption option) {
         string = JRand.string();
         lorem = JRand.lorem();
@@ -112,16 +144,37 @@ public class DataConverter {
 
     //-------------- PERSON -------------------
 
+    /**
+     * Generate a random full name.
+     *
+     * @return a random full name as a String.
+     */
     public static String generateName() {
         name = JRand.name();
         return name.gen();
     }
 
+    /**
+     * Generate a random gender specific full name.
+     *
+     * @param gender MALE, FEMALE
+     * @return a random full name as a String.
+     */
     public static String generateName(Gender gender) {
         name = JRand.name();
         return name.gender(gender).gen();
     }
 
+    /**
+     * Generate a random name based on specified option.
+     *
+     * @param option FIRSTNAME_ONLY - first name only
+     *               LASTNAME_ONLY - last name only
+     *               WITH_MIDDLENAME - full name including a middle name
+     *               WITH_TITLE - full name including a title
+     *               LASTNAME_FIRST - last name, first name
+     * @return a random name as a String.
+     */
     public static String generateName(NameOption option) {
         name = JRand.name();
         firstname = JRand.firstname();
@@ -142,6 +195,17 @@ public class DataConverter {
         }
     }
 
+    /**
+     * Generate a random gender specific name based on specified option.
+     *
+     * @param gender MALE, FEMALE
+     * @param option FIRSTNAME_ONLY - first name only
+     *               LASTNAME_ONLY - last name only
+     *               WITH_MIDDLENAME - full name including a middle name
+     *               WITH_TITLE - full name including a title
+     *               LASTNAME_FIRST - last name, first name
+     * @return a random name as a String.
+     */
     public static String generateName(Gender gender, NameOption option) {
         name = JRand.name();
         firstname = JRand.firstname();
@@ -159,16 +223,37 @@ public class DataConverter {
         }
     }
 
+    /**
+     * Generate a random age between 1 - 120.
+     *
+     * @return a random age as an int.
+     */
     public static int generateAge() {
         age = JRand.age();
         return age.gen();
     }
 
+    /**
+     * Generate a random age within a specified range.
+     *
+     * @return a random age as an int.
+     */
     public static int generateAge(int min, int max) {
         Random r = new Random();
         return r.nextInt((max - min) + 1) + min;
     }
 
+
+    /**
+     * Generate a random age within a range,
+     * based on specified person type.
+     *
+     * @param option CHILD - age range 1- 12
+     *               TEEN - age range 12 - 17
+     *               ADULT - age range 18 - 40
+     *               SENIOR - age range 41 - 120
+     * @return a random age as an int.
+     */
     public static int generateAge(PersonOption option) {
         age = JRand.age();
         switch (option) {
@@ -185,16 +270,36 @@ public class DataConverter {
         }
     }
 
+    /**
+     * Generate a random birthday in MM/dd/yy format.
+     *
+     * @return a random birthday as a String.
+     */
     public static String generateBirthday() {
         birthday = JRand.birthday();
         return birthday.american().genString();
     }
 
+    /**
+     * Generate a random birthday in specified format.
+     *
+     * @return a random birthday as a String.
+     */
     public static String generateBirthday(String format) {
         birthday = JRand.birthday();
         return birthday.format(format).genString();
     }
 
+    /**
+     * Generate a random birthday withn a range based on specified person type,
+     * in MM/dd/yy format.
+     *
+     * @param option CHILD - age range 1- 12
+     *               TEEN - age range 12 - 17
+     *               ADULT - age range 18 - 40
+     *               SENIOR - age range 41 - 120
+     * @return a random birthday as a String.
+     */
     public static String generateBirthday(PersonOption option) {
         birthday = JRand.birthday();
         switch (option) {
@@ -211,6 +316,16 @@ public class DataConverter {
         }
     }
 
+    /**
+     * Generate a random birthday withn a range based on specified person type,
+     * in a specified format.
+     *
+     * @param option CHILD - age range 1- 12
+     *               TEEN - age range 12 - 17
+     *               ADULT - age range 18 - 40
+     *               SENIOR - age range 41 - 120
+     * @return a random birthday as a String.
+     */
     public static String generateBirthday(PersonOption option, String format) {
         birthday = JRand.birthday();
         switch (option) {
@@ -228,11 +343,12 @@ public class DataConverter {
     }
 
     /**
-     * Generate a random birth date from a random age within an age range.
+     * Generate a random birth date from a random age within an age range,
+     * in MM/dd/yy format
      *
-     * @param age1 - the minimum age
-     * @param age2 - the maximum age
-     * @return String in MM/dd/yy format
+     * @param age1 the minimum age
+     * @param age2 the maximum age
+     * @return a random birthday as a String.
      */
     public static String generateBirthday(int age1, int age2) {
         DateTime now = new DateTime();
@@ -250,10 +366,10 @@ public class DataConverter {
      * Generate a random birth date in a specified format,
      * from a random age within an age range.
      *
-     * @param age1   - the minimum age
-     * @param age2   - the maximum age
-     * @param format - the date format
-     * @return String in specified format
+     * @param age1   the minimum age
+     * @param age2   the maximum age
+     * @param format the date format
+     * @return a random birthday as a String.
      */
     public static String generateBirthday(int age1, int age2, String format) {
         DateTime now = new DateTime();
@@ -267,12 +383,10 @@ public class DataConverter {
         return formatter.print(new DateTime(mills));
     }
 
-    // TODO - Get date from today + / - time amount
-
     /**
-     * Generate today's date.
+     * Generate today's date in MM/dd/yy format
      *
-     * @return String in MM/dd/yy format
+     * @return today's date as a String
      */
     public static String generateDate() {
         DateTime now = new DateTime();
@@ -284,8 +398,8 @@ public class DataConverter {
     /**
      * Generate today's date in a specified format.
      *
-     * @param format - the date format
-     * @return String in specified format
+     * @param format the date format
+     * @return today's date as a String
      */
     public static String generateDate(String format) {
         DateTime now = new DateTime();
@@ -295,12 +409,13 @@ public class DataConverter {
     }
 
     /**
-     * Generate a random future or past date relative to today's date.
+     * Generate a random future or past date relative to today's date,
+     * in MM/dd/yy format.
      *
-     * @param amount    - the amount of time from today's date
-     * @param duration  - DAYS, WEEKS, MONTHS, YEARS
-     * @param direction - FUTURE, PAST
-     * @return String in MM/dd/yy format
+     * @param amount    the amount of time from today's date
+     * @param duration  DAYS, WEEKS, MONTHS, YEARS
+     * @param direction FUTURE, PAST
+     * @return date as a String
      */
     public static String generateDate(int amount, TimeOption duration, DateOption direction) {
         DateTime now = new DateTime();
@@ -342,11 +457,11 @@ public class DataConverter {
      * Generate a random future or past date in a specified format,
      * relative to today's date.
      *
-     * @param amount    - the amount of time from today's date
-     * @param duration  - DAYS, WEEKS, MONTHS, YEARS
-     * @param direction - FUTURE, PAST
-     * @param format    - the date format
-     * @return String in specified format
+     * @param amount    the amount of time from today's date
+     * @param duration  DAYS, WEEKS, MONTHS, YEARS
+     * @param direction FUTURE, PAST
+     * @param format    the date format
+     * @return date as a String
      */
     public static String generateDate(int amount, TimeOption duration, DateOption direction, String format) {
         DateTime now = new DateTime();
@@ -386,13 +501,13 @@ public class DataConverter {
 
     /**
      * Generate a random future or past date in a specified format,
-     * relative to a specified date of origin.
+     * relative to a specified date of origin, in MM/dd/yy format.
      *
      * @param date      - the date of origin, in MM/dd/yy
      * @param amount    - the amount of time from today's date
      * @param duration  - DAYS, WEEKS, MONTHS, YEARS
      * @param direction - FUTURE, PAST
-     * @return String in MM/dd/yy format
+     * @return date as a String
      */
     public static String generateDate(String date, int amount, TimeOption duration, DateOption direction) {
         DateTimeFormatter formatter = DateTimeFormat.forPattern("MM/dd/yy");
@@ -481,11 +596,24 @@ public class DataConverter {
 
     //-------------- MONEY -------------------
 
+    /**
+     * Generate a random credit card number.
+     *
+     * @return a random cc number as a String.
+     */
     public static String generateCardNumber() {
         cardNo = JRand.cardNo();
         return cardNo.gen();
     }
 
+    /**
+     * Generate a random credit card number based on output options.
+     *
+     * @param option COMMON - VISA, MC, AMEX, DISCOVER
+     *               FORMATTED - numbers formatted to look like on credit card
+     *               COMMON_FORMATTED - Common cc formatted to look like on credit card
+     * @return a random cc number as a String.
+     */
     public static String generateCardNumber(CardOption option) {
         cardNo = JRand.cardNo();
         switch (option) {
@@ -500,16 +628,42 @@ public class DataConverter {
         }
     }
 
+    /**
+     * Generate a random credit card number in a specified format
+     *
+     * @param format X - use uppercase X to represent cc numbers
+     *               ex: XXX XXX XXXX XXX
+     * @return a random cc number as a String.
+     */
     public static String generateCardNumber(String format) {
         cardNo = JRand.cardNo();
         return cardNo.format(format).gen();
     }
 
+    /**
+     * Generate a random credit card number based on specific card type.
+     *
+     * @param cardType AMEX, AMERICAN EXPRESS, VISA, ELECTRON, VISA ELECTRON,
+     *                 MASTERCARD, MC, CHINA UNIONPAY, CUP, MAES, MAESTRO,
+     *                 DISCOVER, DISC, DC-CB, DC-INT, DC-UC, JCB,
+     *                 INSTAPAYMENT, IPI, LASER, LASR, SOLO, SWCH, SWITCH
+     * @return a random cc number as a String.
+     */
     public static String generateCardNumber(CardType cardType) {
         cardNo = JRand.cardNo();
         return cardNo.cardType(cardType).gen();
     }
 
+    /**
+     * Generate a random credit card number based on a specific card type, formatted
+     *
+     * @param cardType AMEX, AMERICAN EXPRESS, VISA, ELECTRON, VISA ELECTRON,
+     *                 MASTERCARD, MC, CHINA UNIONPAY, CUP, MAES, MAESTRO,
+     *                 DISCOVER, DISC, DC-CB, DC-INT, DC-UC, JCB,
+     *                 INSTAPAYMENT, IPI, LASER, LASR, SOLO, SWCH, SWITCH
+     * @param option   FORMATTED - numbers formatted to look like on credit card
+     * @return a random cc number as a String.
+     */
     public static String generateCardNumber(CardType cardType, CardOption option) {
         cardNo = JRand.cardNo();
         if (option == CardOption.FORMATTED) {
@@ -521,11 +675,22 @@ public class DataConverter {
 
     //TODO - ????? add Generate Valid <cc company> Number methods ?????
 
+    /**
+     * Generate a random cc issue date.
+     *
+     * @return a random issue date as a String.
+     */
     public static String generateCardIssueDate() {
         issueDate = JRand.issueDate();
         return issueDate.gen();
     }
 
+    /**
+     * Generate a random cc issue date with specified year option
+     *
+     * @param option FULL_YEAR - returns 4 digits for year (default is 2)
+     * @return a random issue date as a String.
+     */
     public static String generateCardIssueDate(CardOption option) {
         issueDate = JRand.issueDate();
         if (option == CardOption.FULL_YEAR) {
@@ -535,11 +700,23 @@ public class DataConverter {
         }
     }
 
+    /**
+     * Generate a random cc expiration date.
+     *
+     * @return a random expiration date as a String.
+     */
     public static String generateExpiryDate() {
         expiryDate = JRand.expiryDate();
         return expiryDate.gen();
     }
 
+    /**
+     * Generate a random cc expiration date with specified options.
+     *
+     * @param option FULL_YEAR - returns 4 digits for year (default is 2)
+     *               EXPIRED - returns an already expired card date
+     * @return a random expiration date as a String.
+     */
     public static String generateExpiryDate(CardOption option) {
         expiryDate = JRand.expiryDate();
         switch (option) {
@@ -552,11 +729,22 @@ public class DataConverter {
         }
     }
 
+    /**
+     * Generate a random cc cvv number.
+     *
+     * @return a random cvv number as a String.
+     */
     public static String generateCVV() {
         cvv = JRand.cvv();
         return cvv.gen();
     }
 
+    /**
+     * Generate a random cc cvv number for AMEX.
+     *
+     * @param isAmex true - produce a 4-digit AMEX cvv number
+     * @return a random cvv number as a String.
+     */
     public static String generateCVV(boolean isAmex) {
         cvv = JRand.cvv();
         if (isAmex) {
