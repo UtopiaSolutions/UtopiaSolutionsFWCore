@@ -1,5 +1,6 @@
 package com.usf.utils;
 
+import com.github.javafaker.Faker;
 import me.xdrop.jrand.JRand;
 import me.xdrop.jrand.generators.basics.BoolGenerator;
 import me.xdrop.jrand.generators.basics.DecimalGenerator;
@@ -500,8 +501,8 @@ public class DataConverter {
     }
 
     /**
-     * Generate a random future or past date in a specified format,
-     * relative to a specified date of origin, in MM/dd/yy format.
+     * Generate a random future or past date in MM/dd/yy format,
+     * relative to a specified date of origin.
      *
      * @param date      - the date of origin, in MM/dd/yy
      * @param amount    - the amount of time from today's date
@@ -754,8 +755,107 @@ public class DataConverter {
         }
     }
 
-    // TODO:  J-FAKER ADDRESS FUNCTIONALITY
+    //-------------- LOCATIONS ---------------
 
+    /**
+     * Generate a random street address.
+     *
+     * @return a random street address as a String.
+     */
+    public static String generateStreetAddress() {
+        Faker faker = new Faker();
+        return faker.address().streetAddress();
+    }
+
+    /**
+     * Generate a random city.
+     *
+     * @return a random city name as a String.
+     */
+    public static String generateCity() {
+        Faker faker = new Faker();
+        return faker.address().city();
+    }
+
+    /**
+     * Generate a random state.
+     *
+     * @return a random state full name as a String.
+     */
+    public static String generateState() {
+        Faker faker = new Faker();
+        return faker.address().state();
+    }
+
+    /**
+     * Generate a random state.
+     *
+     * @param abbr true - returns abbreviation of state
+     * @return a random state as a String.
+     */
+    public static String generateState(boolean abbr) {
+        Faker faker = new Faker();
+        if(abbr) {
+            return faker.address().stateAbbr();
+        } else {
+            return faker.address().state();
+        }
+    }
+
+    /**
+     * Generate a random zip code.
+     *
+     * @return a random zip code as a String.
+     */
+    public static String generateZipCode() {
+        Faker faker = new Faker();
+        return faker.address().zipCode();
+    }
+
+    /**
+     * Generate a random zip code in a specified state.
+     *
+     * @param stateAbbr true abbreviation of state
+     * @return a random zip code as a String.
+     */
+    public static String generateZipCode(String stateAbbr) {
+        Faker faker = new Faker();
+        String zip = faker.address().zipCodeByState(stateAbbr.toUpperCase());
+        String newZip = "";
+        char[] zipChars = zip.toCharArray();
+        for(int i = 0; i < zipChars.length; i++) {
+            if(zipChars[i] == '#') {
+                Random rand = new Random();
+                int num = rand.nextInt(10);
+                newZip += num;
+            } else {
+                newZip += zipChars[i];
+            }
+        }
+        return newZip;
+    }
+
+    /**
+     * Generate a random country.
+     *
+     * @return a random country as a String.
+     */
+    public static String generateCountry() {
+        Faker faker = new Faker();
+        return faker.address().country();
+    }
+
+    /**
+     * Generate a random country code.
+     *
+     * @return a random country code as a String.
+     */
+    public static String generateCountryCode() {
+        Faker faker = new Faker();
+        return faker.address().countryCode();
+    }
+
+    //--------------- HELPERS -----------------
 
     private static long getRandomTimeBetweenTwoDates(long endTime, long beginTime) {
         long diff = endTime - beginTime + 1L;
