@@ -69,7 +69,8 @@
         <dependency>
             <groupId>me.xdrop</groupId>
             <artifactId>jrand</artifactId>
-            <version>0.2.5-alpha</version>
+            <version>0.2.7-alpha</version>
+            <type>pom</type>
         </dependency>
 
     </dependencies>
