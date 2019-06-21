@@ -546,7 +546,6 @@ public class DataConverter {
         }
     }
 
-
     /**
      * Generate a random future or past date in a specified format,
      * relative to a specified date of origin.  Date of origin format MUST
@@ -658,16 +657,17 @@ public class DataConverter {
     /**
      * Generate a random credit card number based on a specific card type, formatted
      *
-     * @param cardType AMEX, AMERICAN EXPRESS, VISA, ELECTRON, VISA ELECTRON,
-     *                 MASTERCARD, MC, CHINA UNIONPAY, CUP, MAES, MAESTRO,
-     *                 DISCOVER, DISC, DC-CB, DC-INT, DC-UC, JCB,
-     *                 INSTAPAYMENT, IPI, LASER, LASR, SOLO, SWCH, SWITCH
-     * @param option   FORMATTED - numbers formatted to look like on credit card
+     * @param cardType    AMEX, AMERICAN EXPRESS, VISA, ELECTRON, VISA ELECTRON,
+     *                    MASTERCARD, MC, CHINA UNIONPAY, CUP, MAES, MAESTRO,
+     *                    DISCOVER, DISC, DC-CB, DC-INT, DC-UC, JCB,
+     *                    INSTAPAYMENT, IPI, LASER, LASR, SOLO, SWCH, SWITCH
+     * @param isFormatted true - numbers formatted to look like on credit card
+     *                    false - default cc number with no spacess
      * @return a random cc number as a String.
      */
-    public static String generateCardNumber(CardType cardType, CardOption option) {
+    public static String generateCardNumber(CardType cardType, boolean isFormatted) {
         cardNo = JRand.cardNo();
-        if (option == CardOption.FORMATTED) {
+        if (isFormatted) {
             return cardNo.cardType(cardType).format().gen();
         } else {
             return cardNo.cardType(cardType).gen();
@@ -795,7 +795,7 @@ public class DataConverter {
      */
     public static String generateState(boolean abbr) {
         Faker faker = new Faker();
-        if(abbr) {
+        if (abbr) {
             return faker.address().stateAbbr();
         } else {
             return faker.address().state();
@@ -823,8 +823,8 @@ public class DataConverter {
         String zip = faker.address().zipCodeByState(stateAbbr.toUpperCase());
         String newZip = "";
         char[] zipChars = zip.toCharArray();
-        for(int i = 0; i < zipChars.length; i++) {
-            if(zipChars[i] == '#') {
+        for (int i = 0; i < zipChars.length; i++) {
+            if (zipChars[i] == '#') {
                 Random rand = new Random();
                 int num = rand.nextInt(10);
                 newZip += num;
