@@ -47,7 +47,7 @@ public class AssetLoader {
 
 
     private static InputStream loadResourceByName(String assetName) {
-        return AssetLoader.class.getClassLoader().getResourceAsStream("/data/" + assetName);
+        return AssetLoader.class.getClassLoader().getResourceAsStream("data/" + assetName);
     }
 
 }
