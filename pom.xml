@@ -71,14 +71,6 @@
         </dependency>
 
         <dependency>
-            <groupId>me.xdrop</groupId>
-            <artifactId>jrand</artifactId>
-            <version>0.2.7-alpha</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/jrand-0.2.7-alpha.jar</systemPath>
-        </dependency>
-
-        <dependency>
             <groupId>com.github.javafaker</groupId>
             <artifactId>javafaker</artifactId>
             <version>0.18</version>
