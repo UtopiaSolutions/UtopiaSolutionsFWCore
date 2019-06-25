@@ -13,7 +13,7 @@
         <kotlin.version>1.3.40</kotlin.version>
     </properties>
 
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
 
     <repositories>
