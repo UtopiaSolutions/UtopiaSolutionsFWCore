@@ -4,7 +4,9 @@ import com.aventstack.extentreports.service.ExtentTestManager;
 import com.aventstack.extentreports.testng.listener.ExtentITestListenerClassAdapter;
 import com.codeborne.selenide.impl.ScreenShotLaboratory;
 import org.testng.ITestResult;
+
 import java.io.IOException;
+
 import static com.codeborne.selenide.WebDriverRunner.driver;
 
 public class ExtentListenerAdapter extends ExtentITestListenerClassAdapter {
