@@ -7,9 +7,7 @@
     <groupId>com.autmatika</groupId>
     <artifactId>TestSelenide</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <modules>
-        <module>jRand</module>
-    </modules>
+
 
     <properties>
         <kotlin.version>1.3.40</kotlin.version>
