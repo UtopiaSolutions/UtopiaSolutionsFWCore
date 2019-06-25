@@ -10,7 +10,8 @@ import me.xdrop.jrand.generators.money.CardNumberGenerator;
 import me.xdrop.jrand.generators.money.ExpiryDateGenerator;
 import me.xdrop.jrand.generators.money.IssueDateGenerator;
 import me.xdrop.jrand.generators.person.*;
-import me.xdrop.jrand.generators.text.LoremGenerator;
+import me.xdrop.jrand.generators.text.ParagraphGenerator;
+import me.xdrop.jrand.generators.text.WordGenerator;
 import me.xdrop.jrand.model.money.CardType;
 import me.xdrop.jrand.model.person.Gender;
 import me.xdrop.jrand.model.person.PersonType;
@@ -28,7 +29,8 @@ public class DataConverter {
     private static BoolGenerator bool;
     private static DecimalGenerator decimal;
     private static StringGenerator string;
-    private static LoremGenerator lorem;
+    private static ParagraphGenerator paragraph;
+    private static WordGenerator word;
     private static FirstnameGenerator firstname;
     private static LastnameGenerator lastname;
     private static NameGenerator name;
@@ -124,20 +126,25 @@ public class DataConverter {
      */
     public static String generateRandomString(StringOption option) {
         string = JRand.string();
-        lorem = JRand.lorem();
+        word = JRand.word();
+        paragraph = JRand.paragraph();
+
+        Random r = new Random();
+        int randNum = r.nextInt(10);
+
         switch (option) {
             case ALPHA:
-                return string.alpha().gen();
+                return string.alpha().range(randNum, 15).gen();
             case DIGIT:
-                return string.digits().gen();
+                return string.digits().range(randNum, 15).gen();
             case SYMBOL:
-                return string.symbols().gen();
+                return string.symbols().range(randNum, 15).gen();
             case WORD:
-                return lorem.single().gen();
+                return word.length(randNum).gen();
             case SENTENCE:
-                return lorem.sentences(1).gen();
+                return paragraph.sentences(1).gen();
             case PARAGRAPH:
-                return lorem.gen();
+                return paragraph.gen();
             default:
                 return string.gen();
         }
