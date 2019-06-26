@@ -1,6 +1,7 @@
 package com.usf.utils;
 
 import com.github.javafaker.Faker;
+import com.usf.utils.options.*;
 import me.xdrop.jrand.JRand;
 import me.xdrop.jrand.generators.basics.BoolGenerator;
 import me.xdrop.jrand.generators.basics.DecimalGenerator;
@@ -42,33 +43,6 @@ public class DataConverter {
     private static CVVGenerator cvv;
 
 
-    public enum StringOption {
-        SYMBOL, ALPHA, DIGIT,
-        WORD, SENTENCE, PARAGRAPH
-    }
-
-    public enum NameOption {
-        FIRSTNAME_ONLY, LASTNAME_ONLY,
-        WITH_MIDDLENAME, WITH_TITLE,
-        LASTNAME_FIRST
-    }
-
-    public enum PersonOption {
-        CHILD, TEEN, ADULT, SENIOR
-    }
-
-    public enum CardOption {
-        FORMATTED, COMMON, COMMON_FORMATTED,
-        FULL_YEAR, EXPIRED
-    }
-
-    public enum DateOption {
-        FUTURE, PAST
-    }
-
-    public enum TimeOption {
-        DAYS, WEEKS, MONTHS, YEARS
-    }
 
     //-------------- BASIC --------------------
 
