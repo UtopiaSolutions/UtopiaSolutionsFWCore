@@ -575,6 +575,16 @@ public class DataGenerator {
         }
     }
 
+    /**
+     * Generate a random phone number in xxx-xxx-xxxx format.
+     *
+     * @return a random phone number as a String.
+     */
+    public static String generatePhoneNumber() {
+        Faker faker = new Faker();
+        return faker.phoneNumber().cellPhone();
+    }
+
     //-------------- MONEY -------------------
 
     /**
