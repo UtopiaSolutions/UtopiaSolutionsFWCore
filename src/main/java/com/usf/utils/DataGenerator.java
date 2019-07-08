@@ -23,9 +23,9 @@ import org.joda.time.format.DateTimeFormatter;
 import java.util.Random;
 
 /**
- * Wrapper class for JRand functionality
+ * A class that is used to generate data.
  */
-public class DataConverter {
+public class DataGenerator {
 
     private static BoolGenerator bool;
     private static DecimalGenerator decimal;
@@ -575,6 +575,16 @@ public class DataConverter {
         }
     }
 
+    /**
+     * Generate a random phone number in xxx-xxx-xxxx format.
+     *
+     * @return a random phone number as a String.
+     */
+    public static String generatePhoneNumber() {
+        Faker faker = new Faker();
+        return faker.phoneNumber().cellPhone();
+    }
+
     //-------------- MONEY -------------------
 
     /**
@@ -643,7 +653,7 @@ public class DataConverter {
      *                    DISCOVER, DISC, DC-CB, DC-INT, DC-UC, JCB,
      *                    INSTAPAYMENT, IPI, LASER, LASR, SOLO, SWCH, SWITCH
      * @param isFormatted true - numbers formatted to look like on credit card
-     *                    false - default cc number with no spacess
+     *                    false - default cc number with no spaces
      * @return a random cc number as a String.
      */
     public static String generateCardNumber(CardType cardType, boolean isFormatted) {
