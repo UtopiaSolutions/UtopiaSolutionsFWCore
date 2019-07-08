@@ -1,17 +1,19 @@
 package test;
 
-import com.usf.utils.parsers.JSONReader;
 import com.usf.utils.parsers.Parser;
 import org.testng.annotations.Test;
+
+import static com.usf.utils.ConfigurationReader.getConfigValue;
+import static com.usf.utils.ConfigurationReader.readConfigurations;
 
 public class NewFeatureTest {
 
     @Test
     public static void featureTest() {
-        Parser parser = new JSONReader();
+        readConfigurations();
+        Parser parser = new Parser(getConfigValue("metadata-path"), "metadata");
 
-
-        parser.parse("metadata");
+        parser.parseFile();
 
     }
 }
