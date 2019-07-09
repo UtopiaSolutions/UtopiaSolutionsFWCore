@@ -1,14 +1,17 @@
 package test;
 
-import com.usf.utils.DataGenerator;
+import com.usf.utils.parsers.Parser;
 import org.testng.annotations.Test;
 
-public class NewFeatureTest {
+import static com.usf.utils.ConfigurationReader.getConfigValue;
+
+public class NewFeatureTest extends BaseUITest {
 
     @Test
     public static void featureTest() {
+        Parser parser = new Parser(getConfigValue("metadata-path"), "metadata");
 
-        DataGenerator.generatePhoneNumber();
+        parser.parseFile();
 
     }
 }
