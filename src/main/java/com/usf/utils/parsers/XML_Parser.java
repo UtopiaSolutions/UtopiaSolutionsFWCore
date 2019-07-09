@@ -45,7 +45,7 @@ public class XML_Parser {
                             .getChildNodes().item(0).getNodeValue();
 
 
-                    Metadata.getInstance().add(key, value);
+                    Metadata.getInstance().add(key.toLowerCase(), value);
                     log.info("Key / Value pair [ " + key + ", " + value + " ] was added to Metadata.");
                 }
             }

@@ -30,7 +30,7 @@ public class CSV_Parser {
                     continue;
                 } else {
                     Metadata.getInstance().add(line[0], line[1]);
-                    log.info("Key / Value pair [ " + line[0] + ", " + line[1] + " ] was added to Metadata.");
+                    log.info("Key / Value pair [ " + line[0].toLowerCase() + ", " + line[1] + " ] was added to Metadata.");
                 }
             }
         } catch (Exception e) {

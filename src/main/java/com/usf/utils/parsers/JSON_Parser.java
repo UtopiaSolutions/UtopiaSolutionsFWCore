@@ -36,7 +36,7 @@ public class JSON_Parser {
             while (iterator.hasNext()) {
                 String[] pair = iterator.next().split(":");
                 Metadata.getInstance().add(pair[0], pair[1]);
-                log.info("Key / Value pair [ " + pair[0] + ", " + pair[1] + " ] was added to Metadata.");
+                log.info("Key / Value pair [ " + pair[0].toLowerCase() + ", " + pair[1] + " ] was added to Metadata.");
             }
 
         } catch (Exception e) {

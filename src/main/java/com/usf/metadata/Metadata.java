@@ -28,7 +28,7 @@ public class Metadata {
     }
 
     public static String getValue(String key) {
-        return metadata.get(key);
+        return metadata.get(key.toLowerCase());
     }
 
     public static void remove(String key) {
