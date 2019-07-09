@@ -7,8 +7,8 @@ public class Parser {
         XML, JSON, CSV
     }
 
-    private String CONFIG = "";
-    private String FILE = "";
+    private String CONFIG;
+    private String FILE;
 
     public Parser(String filepath, String filename) {
         this.CONFIG = filepath;
@@ -20,12 +20,16 @@ public class Parser {
         FileType fileType = this.getFileType(CONFIG, FILE);
         switch (fileType) {
             case CSV:
+                CSV_Parser csvReader = new CSV_Parser();
+                csvReader.parse(CONFIG, FILE);
                 break;
             case JSON:
-                JSONReader reader = new JSONReader();
-                reader.parse(CONFIG, FILE);
+                JSON_Parser jsonReader = new JSON_Parser();
+                jsonReader.parse(CONFIG, FILE);
                 break;
             case XML:
+                XML_Parser xmlReader = new XML_Parser();
+                xmlReader.parse(CONFIG, FILE);
                 break;
             default:
                 break;

@@ -11,7 +11,7 @@ public class NewFeatureTest {
     @Test
     public static void featureTest() {
         readConfigurations();
-        Parser parser = new Parser(getConfigValue("metadata-path"), "metadata");
+        Parser parser = new Parser(getConfigValue("metadata-path"), "c-metadata");
 
         parser.parseFile();
 

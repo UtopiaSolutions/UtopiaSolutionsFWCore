@@ -7,7 +7,7 @@ import org.json.simple.parser.JSONParser;
 import java.io.FileReader;
 import java.util.Iterator;
 
-public class JSONReader {
+public class JSON_Parser {
 
     public void parse(String filepath, String filename) {
         JSONParser parser = new JSONParser();
