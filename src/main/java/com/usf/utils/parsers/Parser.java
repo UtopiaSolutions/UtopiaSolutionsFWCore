@@ -78,7 +78,7 @@ public class Parser {
         boolean hasDuplicates = this.checkForDuplicates(path, file);
 
         if (hasDuplicates) {
-            throw new Error("Multiple file types with name \"" + file + "\" have been found.  Please be more specific!");
+            throw new Error("Multiple file types with name \"" + file + "\" have been found.  Please include the file extension!");
         }
 
         File folder = new File(path);
@@ -118,7 +118,7 @@ public class Parser {
         }
 
         if (count == 0) {
-            throw new Error("Could not locate file: " + file);
+            log.error("Could not locate file: " + file);
         }
 
         return count != 1;
