@@ -7,11 +7,17 @@ import java.io.FileReader;
 public class CSV_Parser {
 
     public void parse(String filepath, String filename) {
-        CSVReader reader = null;
+        boolean hasExtension = filename.contains(".csv");
+        CSVReader reader;
 
         try {
 
-            reader = new CSVReader(new FileReader(filepath + "/" + filename + ".csv"));
+            if(hasExtension) {
+                reader = new CSVReader(new FileReader(filepath + "/" + filename));
+
+            } else {
+                reader = new CSVReader(new FileReader(filepath + "/" + filename + ".csv"));
+            }
 
             String[] line;
             while ((line = reader.readNext()) != null) {

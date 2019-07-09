@@ -20,9 +20,10 @@ public class BaseUITest {
         try {
             ConfigurationReader.readConfigurations("client_config");
         } catch (Exception e) {
+            ConfigurationReader.readConfigurations();
             log.warn("No Configuration File found!");
         } finally {
-            log.debug("Starting test class...");
+            log.debug("Starting test class...");;
         }
     }
 

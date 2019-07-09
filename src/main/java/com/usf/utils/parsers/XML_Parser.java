@@ -12,14 +12,21 @@ import java.io.File;
 public class XML_Parser {
 
     public void parse(String filepath, String filename) {
+        boolean hasExtension = filename.contains(".xml");
+
 
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
 
-            // Load the input XML document, parse it and return an instance of the
-            // Document class.
-            Document document = builder.parse(new File(filepath + "/" + filename + ".xml"));
+            // Load the input XML document, parse it and return an instance of the Document class.
+            Document document;
+            if(hasExtension) {
+                document = builder.parse(new File(filepath + "/" + filename));
+            } else {
+                document = builder.parse(new File(filepath + "/" + filename + ".xml"));
+            }
+
 
             NodeList nodeList = document.getDocumentElement().getChildNodes();
             for (int i = 0; i < nodeList.getLength(); i++) {

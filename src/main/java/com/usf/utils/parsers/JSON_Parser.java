@@ -10,11 +10,19 @@ import java.util.Iterator;
 public class JSON_Parser {
 
     public void parse(String filepath, String filename) {
+        boolean hasExtension = filename.contains(".json");
+
         JSONParser parser = new JSONParser();
 
         try {
 
-            Object obj = parser.parse(new FileReader(filepath + "/" + filename + ".json"));
+            Object obj;
+
+            if(hasExtension) {
+                obj = parser.parse(new FileReader(filepath + "/" + filename));
+            } else {
+                obj = parser.parse(new FileReader(filepath + "/" + filename + ".json"));
+            }
 
             JSONObject jsonObject = (JSONObject) obj;
 

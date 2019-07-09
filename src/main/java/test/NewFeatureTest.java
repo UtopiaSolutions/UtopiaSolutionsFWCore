@@ -4,14 +4,12 @@ import com.usf.utils.parsers.Parser;
 import org.testng.annotations.Test;
 
 import static com.usf.utils.ConfigurationReader.getConfigValue;
-import static com.usf.utils.ConfigurationReader.readConfigurations;
 
-public class NewFeatureTest {
+public class NewFeatureTest extends BaseUITest {
 
     @Test
     public static void featureTest() {
-        readConfigurations();
-        Parser parser = new Parser(getConfigValue("metadata-path"), "c-metadata");
+        Parser parser = new Parser(getConfigValue("metadata-path"), "metadata");
 
         parser.parseFile();
 
