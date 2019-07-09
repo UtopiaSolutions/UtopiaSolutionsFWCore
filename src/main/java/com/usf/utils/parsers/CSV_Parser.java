@@ -16,8 +16,10 @@ public class CSV_Parser {
             String[] line;
             while ((line = reader.readNext()) != null) {
                 //TODO:  put metadata somewhere!
-                for(int i = 0; i < line.length; i++) {
-                    System.out.println(line[i]);
+                if(line.length <= 1) {
+                    continue;
+                } else {
+                    System.out.println(line[0] + "=" + line[1]);
                 }
             }
         } catch (Exception e) {
