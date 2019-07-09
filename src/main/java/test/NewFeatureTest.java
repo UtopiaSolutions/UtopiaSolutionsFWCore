@@ -9,6 +9,11 @@ import java.util.Map;
 
 import static com.usf.utils.ConfigurationReader.getConfigValue;
 
+/**
+ * This class is FOR UNIT TESTING ONLY -
+ * when additions are made to the framework core,
+ * they are tested here for bugs and compilation errors.
+ */
 public class NewFeatureTest extends BaseUITest {
 
     @Test
