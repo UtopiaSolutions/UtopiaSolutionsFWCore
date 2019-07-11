@@ -12,6 +12,7 @@ import static com.codeborne.selenide.WebDriverRunner.driver;
 public class ExtentListenerAdapter extends ExtentITestListenerClassAdapter {
 
     public synchronized void onTestFailure(ITestResult result) {
+        System.out.println("BOOM");
         try {
             ExtentTestManager.getTest(result).fail(result.getThrowable());
             ExtentTestManager.getTest(result).addScreenCaptureFromPath(ScreenShotLaboratory.getInstance().takeScreenShot(driver(), result.getName()));

@@ -1,5 +1,8 @@
 package com.usf.utils.parsers;
 
+import com.usf.metadata.Metadata;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -10,10 +13,10 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 
 public class XML_Parser {
+    private final Logger log = LoggerFactory.getLogger(XML_Parser.class);
 
     public void parse(String filepath, String filename) {
         boolean hasExtension = filename.contains(".xml");
-
 
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -26,7 +29,6 @@ public class XML_Parser {
             } else {
                 document = builder.parse(new File(filepath + "/" + filename + ".xml"));
             }
-
 
             NodeList nodeList = document.getDocumentElement().getChildNodes();
             for (int i = 0; i < nodeList.getLength(); i++) {
@@ -42,12 +44,11 @@ public class XML_Parser {
                     String value = elem.getElementsByTagName("value").item(0)
                             .getChildNodes().item(0).getNodeValue();
 
-                    //TODO:  put metadata somewhere!
-                    System.out.println(key + "=" + value);
 
+                    Metadata.getInstance().add(key.toLowerCase(), value);
+                    log.info("Key / Value pair [ " + key + ", " + value + " ] was added to Metadata.");
                 }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -1,13 +1,18 @@
 package com.usf.utils.parsers;
 
+import com.usf.metadata.Metadata;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.FileReader;
 import java.util.Iterator;
 
 public class JSON_Parser {
+    private final Logger log = LoggerFactory.getLogger(JSON_Parser.class);
+
 
     public void parse(String filepath, String filename) {
         boolean hasExtension = filename.contains(".json");
@@ -25,14 +30,13 @@ public class JSON_Parser {
             }
 
             JSONObject jsonObject = (JSONObject) obj;
-
             JSONArray companyList = (JSONArray) jsonObject.get("Metadata");
 
-            System.out.println("\nMetadata:");
             Iterator<String> iterator = companyList.iterator();
             while (iterator.hasNext()) {
-                //TODO:  put metadata somewhere!
-                System.out.println(iterator.next());
+                String[] pair = iterator.next().split(":");
+                Metadata.getInstance().add(pair[0], pair[1]);
+                log.info("Key / Value pair [ " + pair[0].toLowerCase() + ", " + pair[1] + " ] was added to Metadata.");
             }
 
         } catch (Exception e) {
