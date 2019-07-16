@@ -19,6 +19,8 @@ import me.xdrop.jrand.model.person.PersonType;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Random;
 
@@ -26,6 +28,8 @@ import java.util.Random;
  * A class that is used to generate data.
  */
 public class DataGenerator {
+    private static final Logger log = LoggerFactory.getLogger(DataGenerator.class);
+
 
     private static BoolGenerator bool;
     private static DecimalGenerator decimal;

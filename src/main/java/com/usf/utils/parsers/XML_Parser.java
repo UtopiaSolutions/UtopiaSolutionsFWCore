@@ -46,11 +46,16 @@ public class XML_Parser {
 
 
                     Metadata.getInstance().add(key.toLowerCase(), value);
-                    log.info("Key / Value pair [ " + key + ", " + value + " ] was added to Metadata.");
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+
+        if(hasExtension) {
+            log.debug(filepath + "/" + filename + " has been parsed into metadata.");
+        } else {
+            log.debug(filepath + "/" + filename + ".xml has been parsed into metadata.");
         }
     }
 }

@@ -5,11 +5,15 @@ import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static io.restassured.RestAssured.get;
 import static io.restassured.RestAssured.given;
 
 public class RestUtil {
+    private static final Logger log = LoggerFactory.getLogger(RestUtil.class);
+
 
     //Global Setup Variables
     public static String path; //Rest request path
@@ -21,6 +25,7 @@ public class RestUtil {
      */
     public static void setBaseURI (String baseURI){
         RestAssured.baseURI = baseURI;
+        log.debug("Base URI set to: " + baseURI);
     }
 
     /**
@@ -30,6 +35,7 @@ public class RestUtil {
      */
     public static void setBasePath(String basePathTerm){
         RestAssured.basePath = basePathTerm;
+        log.debug("Base Path set to: " + basePathTerm);
     }
 
     /**
@@ -38,6 +44,7 @@ public class RestUtil {
      */
     public static void resetBaseURI (){
         RestAssured.baseURI = null;
+        log.debug("Base URI has been reset.");
     }
 
     /**
@@ -46,6 +53,7 @@ public class RestUtil {
      */
     public static void resetBasePath(){
         RestAssured.basePath = null;
+        log.debug("Base Path has been reset.");
     }
 
     /**

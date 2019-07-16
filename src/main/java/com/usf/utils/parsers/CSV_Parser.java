@@ -19,7 +19,6 @@ public class CSV_Parser {
 
             if(hasExtension) {
                 reader = new CSVReader(new FileReader(filepath + "/" + filename));
-
             } else {
                 reader = new CSVReader(new FileReader(filepath + "/" + filename + ".csv"));
             }
@@ -30,11 +29,16 @@ public class CSV_Parser {
                     continue;
                 } else {
                     Metadata.getInstance().add(line[0], line[1]);
-                    log.info("Key / Value pair [ " + line[0].toLowerCase() + ", " + line[1] + " ] was added to Metadata.");
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+
+        if(hasExtension) {
+            log.debug(filepath + "/" + filename + " has been parsed to metadata.");
+        } else {
+            log.debug(filepath + "/" + filename + ".csv has been parsed to metadata.");
         }
     }
 }
