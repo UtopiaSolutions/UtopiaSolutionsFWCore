@@ -1,7 +1,7 @@
 package test;
 
-import com.usf.TestLogHelper;
 import com.usf.utils.ConfigurationReader;
+import com.usf.utils.logging.TestLogHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.ITestResult;

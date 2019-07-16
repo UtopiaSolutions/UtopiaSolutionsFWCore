@@ -3,7 +3,7 @@
 <suite thread-count="10" verbose="2" name="Meritage test suite" parallel="methods">
 
     <listeners>
-        <listener class-name="com.usf.ExtentListenerAdapter"></listener>
+        <listener class-name="com.usf.utils.reporting.listeners.TestListener"></listener>
     </listeners>
 
     <test name="Core Test">
