@@ -22,7 +22,6 @@ public class TestListener extends BaseUITest implements ITestListener {
     @Override
     public void onStart(ITestContext iTestContext) {
         System.out.println("I am in onStart method " + iTestContext.getName());
-        iTestContext.setAttribute("WebDriver", WebDriverRunner.getWebDriver());
     }
 
     @Override
