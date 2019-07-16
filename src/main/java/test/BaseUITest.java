@@ -12,7 +12,6 @@ import org.testng.annotations.BeforeTest;
 
 
 public class BaseUITest {
-
     private final Logger log = LoggerFactory.getLogger(BaseUITest.class);
 
     @BeforeTest
