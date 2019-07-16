@@ -23,8 +23,6 @@ public class TestListener extends BaseUITest implements ITestListener {
     @Override
     public void onStart(ITestContext iTestContext) {
         System.out.println("I am in onStart method " + iTestContext.getName());
-        driver = getWebDriver();
-        iTestContext.setAttribute("WebDriver", driver);
     }
 
     @Override
@@ -52,7 +50,7 @@ public class TestListener extends BaseUITest implements ITestListener {
         System.out.println("I am in onTestFailure method " + getTestMethodName(iTestResult) + " failed");
 
         //Get driver from BaseTest and assign to local webDriver variable.
-        WebDriver webDriver = driver;
+        WebDriver webDriver = getWebDriver();
 
         //Take base64Screenshot screenshot.
         String base64Screenshot = "data:image/png;base64," + ((TakesScreenshot) webDriver).
