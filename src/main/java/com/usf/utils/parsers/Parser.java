@@ -37,19 +37,16 @@ public class Parser {
                 log.info("CSV file detected.");
                 CSV_Parser csvReader = new CSV_Parser();
                 csvReader.parse(CONFIG, FILE);
-                log.info("Parsed CSV File: " + FILE);
                 break;
             case JSON:
                 log.info("JSON file detected.");
                 JSON_Parser jsonReader = new JSON_Parser();
                 jsonReader.parse(CONFIG, FILE);
-                log.info("Parsed JSON File: " + FILE);
                 break;
             case XML:
                 log.info("XML file detected.");
                 XML_Parser xmlReader = new XML_Parser();
                 xmlReader.parse(CONFIG, FILE);
-                log.info("Parsed XML File: " + FILE);
                 break;
             default:
                 log.warn(FILE + " is not a valid file type! No data was collected.");
@@ -78,6 +75,7 @@ public class Parser {
         boolean hasDuplicates = this.checkForDuplicates(path, file);
 
         if (hasDuplicates) {
+            log.error("Multiple file types with name \"" + file + "\" have been found.");
             throw new Error("Multiple file types with name \"" + file + "\" have been found.  Please include the file extension!");
         }
 

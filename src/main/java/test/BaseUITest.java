@@ -23,7 +23,7 @@ public class BaseUITest {
             ConfigurationReader.readConfigurations();
             log.warn("No Configuration File found!");
         } finally {
-            log.debug("Starting test class...");;
+            log.debug("Starting test class...");
         }
     }
 

@@ -1,5 +1,8 @@
 package com.usf.utils;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -7,6 +10,7 @@ import java.util.Properties;
 
 
 public class ConfigurationReader {
+    private static final Logger log = LoggerFactory.getLogger(ConfigurationReader.class);
 
     private static Properties clientConfigProperty;
     private static Properties coreConfigProperty;
@@ -57,7 +61,7 @@ public class ConfigurationReader {
             for (String key : coreConfigProperty.stringPropertyNames()) {
                 String value = coreConfigProperty.getProperty(key);
                 configurations.put(key, String.valueOf(value));
-
+                log.debug("USF configuration loaded: " + key + "=" + value);
             }
             properties.close();
         } catch (IOException e) {
@@ -72,6 +76,11 @@ public class ConfigurationReader {
             clientConfigProperty.load(properties);
             for (String key : clientConfigProperty.stringPropertyNames()) {
                 String value = clientConfigProperty.getProperty(key);
+                if(configurations.containsKey(key)) {
+                    log.debug("USF configuration overwritten with custom configuration: " + key + "=" + value);
+                } else {
+                    log.debug("Custom configuration loaded: " + key + "=" + value);
+                }
                 configurations.put(key, String.valueOf(value));
             }
             properties.close();

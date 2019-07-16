@@ -16,11 +16,9 @@ public class JSON_Parser {
 
     public void parse(String filepath, String filename) {
         boolean hasExtension = filename.contains(".json");
-
         JSONParser parser = new JSONParser();
 
         try {
-
             Object obj;
 
             if(hasExtension) {
@@ -36,11 +34,15 @@ public class JSON_Parser {
             while (iterator.hasNext()) {
                 String[] pair = iterator.next().split(":");
                 Metadata.getInstance().add(pair[0], pair[1]);
-                log.info("Key / Value pair [ " + pair[0].toLowerCase() + ", " + pair[1] + " ] was added to Metadata.");
             }
-
         } catch (Exception e) {
             e.printStackTrace();
+        }
+
+        if(hasExtension) {
+            log.debug(filepath + "/" + filename + " has been parsed into metadata.");
+        } else {
+            log.debug(filepath + "/" + filename + ".json has been parsed into metadata.");
         }
     }
 }
