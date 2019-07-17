@@ -43,7 +43,6 @@ public class TestListener extends BaseUITest implements ITestListener {
     public void onTestSuccess(ITestResult result) {
         log.info("*** Executed " + result.getMethod().getMethodName() + " test successfully...");
         ExtentTestManager.getTest().log(Status.PASS, MarkupHelper.createLabel(result.getName() + " Test Case PASSED", ExtentColor.GREEN));
-        ExtentTestManager.getTest().pass("Test Passed!");
     }
 
     @Override
@@ -55,7 +54,7 @@ public class TestListener extends BaseUITest implements ITestListener {
         //Take base64Screenshot screenshot.
         String base64Screenshot = "data:image/png;base64," + ((TakesScreenshot) webDriver).
                 getScreenshotAs(OutputType.BASE64);
-        ExtentTestManager.getTest().fail("Test Case Failed: " + ExtentTestManager.getTest().addScreenCaptureFromBase64String(base64Screenshot));
+        ExtentTestManager.getTest().addScreenCaptureFromBase64String(base64Screenshot, "Click For Screenshot");
         TestLogHelper.stopTestLogging();
     }
 
@@ -63,7 +62,6 @@ public class TestListener extends BaseUITest implements ITestListener {
     public void onTestSkipped(ITestResult result) {
         log.info("*** Test " + result.getMethod().getMethodName() + " skipped...");
         ExtentTestManager.getTest().log(Status.SKIP, MarkupHelper.createLabel(result.getName() + " - Test Case Skipped", ExtentColor.ORANGE));
-        ExtentTestManager.getTest().skip("Test " + result.getMethod().getMethodName() + " was skipped");
     }
 
     @Override
