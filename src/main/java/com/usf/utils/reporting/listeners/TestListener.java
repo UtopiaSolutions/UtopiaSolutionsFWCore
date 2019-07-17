@@ -2,6 +2,7 @@ package com.usf.utils.reporting.listeners;
 
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.ExtentColor;
+import com.aventstack.extentreports.markuputils.Markup;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.usf.utils.logging.TestLogHelper;
 import com.usf.utils.reporting.ExtentManager;
@@ -54,7 +55,7 @@ public class TestListener extends BaseUITest implements ITestListener {
         //Take base64Screenshot screenshot.
         String base64Screenshot = "data:image/png;base64," + ((TakesScreenshot) webDriver).
                 getScreenshotAs(OutputType.BASE64);
-        ExtentTestManager.getTest().addScreenCaptureFromBase64String(base64Screenshot, "CLICK");
+        ExtentTestManager.getTest().log(Status.FAIL, (Markup) ExtentTestManager.getTest().addScreenCaptureFromBase64String(base64Screenshot));
         TestLogHelper.stopTestLogging();
     }
 
