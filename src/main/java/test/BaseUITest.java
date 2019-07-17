@@ -30,11 +30,13 @@ public class BaseUITest {
     }
 
     @BeforeTest
-    public void beforeTest(Method method) {
+    public void beforeTest() {
         log.debug("Executing @BeforeTest...");
         String name = "";
         String desc = "";
-        Annotation annotation = method.getAnnotation(Test.class);
+        Method[] methods = this.getClass().getMethods();
+
+        Annotation annotation = methods[0].getAnnotation(Test.class);
         if(annotation instanceof Test) {
             Test testAnnotation = (Test) annotation;
             name = testAnnotation.testName();
@@ -43,7 +45,7 @@ public class BaseUITest {
         if(!name.equals("")) {
             ExtentTestManager.startTest(name, desc);
         } else {
-            ExtentTestManager.startTest(method.getName(), "");
+            ExtentTestManager.startTest(methods[0].getName(), "");
         }
     }
 
