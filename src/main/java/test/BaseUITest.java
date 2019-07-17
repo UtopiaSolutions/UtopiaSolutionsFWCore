@@ -30,8 +30,20 @@ public class BaseUITest {
     public ExtentReports extent;
     public ExtentTest extentTest;
 
+    @BeforeSuite
+    public void setupReporting() {
+        log.debug("Executing @BeforeSuite...");
+        htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir") + "\\reports\\test-results.html");
+        extent = new ExtentReports(); // create new Extent Report Object
+        extent.attachReporter(htmlReporter);
+
+        htmlReporter.config().setDocumentTitle("Test Automation Report"); // Tittle of Report
+        htmlReporter.config().setReportName("Test Results"); // Name of the report
+        htmlReporter.config().setTheme(Theme.DARK);//Default Theme of Report
+    }
+
     @BeforeTest
-    public void testSetup() {
+    public void readConfigs() {
         log.debug("Executing @BeforeTest...");
         try {
             ConfigurationReader.readConfigurations("client_config");
@@ -40,14 +52,6 @@ public class BaseUITest {
             log.warn("No Configuration File found!");
         } finally {
             log.debug("Configurations loaded.");
-
-            htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir") + "\\reports\\test-results.html");
-            extent = new ExtentReports(); // create new Extent Report Object
-            extent.attachReporter(htmlReporter);
-
-            htmlReporter.config().setDocumentTitle("Test Automation Report"); // Tittle of Report
-            htmlReporter.config().setReportName("Test Results"); // Name of the report
-            htmlReporter.config().setTheme(Theme.DARK);//Default Theme of Report
 
             String name = "";
             String desc = "";
