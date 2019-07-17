@@ -17,7 +17,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Base64;
 
-import static com.aventstack.extentreports.MediaEntityBuilder.createScreenCaptureFromPath;
+import static com.aventstack.extentreports.MediaEntityBuilder.createScreenCaptureFromBase64String;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class TestListener extends BaseUITest implements ITestListener {
@@ -72,7 +72,7 @@ public class TestListener extends BaseUITest implements ITestListener {
 
     private static void logWithScreenshot(Status status, String message) throws Exception {
         try {
-            ExtentTestManager.getTest().log(status, message, createScreenCaptureFromPath(getBase64ScreenShot()).build());
+            ExtentTestManager.getTest().log(status, message, createScreenCaptureFromBase64String(getBase64ScreenShot()).build());
         } catch (IOException e) {
             throw new Exception("There was an error capturing a screenshot for the log.");
         }
@@ -91,7 +91,7 @@ public class TestListener extends BaseUITest implements ITestListener {
         try {
             screenCapture = new Robot().createScreenCapture(screen);
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            ImageIO.write(screenCapture, "jpg", baos);
+            ImageIO.write(screenCapture, "png", baos);
             baos.flush();
             byte[] encodeBase64 = Base64.getEncoder().encode(baos.toByteArray());
             base64Encoded = new String(encodeBase64);
@@ -102,6 +102,6 @@ public class TestListener extends BaseUITest implements ITestListener {
             throw new Exception("There was an error capturing the screen image.");
         }
 
-        return "data:image/jpg;charset=utf-8;base64," + base64Encoded;
+        return "data:image/png;charset=utf-8;base64," + base64Encoded;
     }
 }
