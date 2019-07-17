@@ -72,7 +72,8 @@ public class TestListener extends BaseUITest implements ITestListener {
         Date date = new Date();
         Timestamp timeStamp = new Timestamp(date.getTime());
 
-        String testClassName = result.getTestClass().getRealClass().toString().trim();
+        String[] testClassNameArray = result.getTestClass().getRealClass().toString().trim().split(".");
+        String testClassName = testClassNameArray[testClassNameArray.length - 1];
         String testMethodName = result.getName().trim();
         String screenShotName = testMethodName + "_" + timeStamp + ".png";
         String FILE_SEPARATOR = System.getProperty("file.separator");
@@ -81,9 +82,7 @@ public class TestListener extends BaseUITest implements ITestListener {
 
 
         try {
-            File file = new File(FOLDER_PATH + FILE_SEPARATOR + testClassName); // Set
-            // screenshots
-            // folder
+            File file = new File(FOLDER_PATH + FILE_SEPARATOR + testClassName); // Set screenshots folder
             if (!file.exists()) {
                 if (file.mkdirs()) {
                     log.info("Directory: " + file.getAbsolutePath() + " is created!");
@@ -94,8 +93,7 @@ public class TestListener extends BaseUITest implements ITestListener {
             }
 
             File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            targetLocation = FOLDER_PATH + FILE_SEPARATOR + testClassName + FILE_SEPARATOR + screenShotName;// define
-            // location
+            targetLocation = FOLDER_PATH + FILE_SEPARATOR + testClassName + FILE_SEPARATOR + screenShotName;// define location
             File targetFile = new File(targetLocation);
             log.info("Screen shot file location - " + screenshotFile.getAbsolutePath());
             log.info("Target File location - " + targetFile.getAbsolutePath());
