@@ -2,7 +2,6 @@ package com.usf.utils.reporting;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
-import com.aventstack.extentreports.reporter.configuration.ChartLocation;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
 import java.io.File;
@@ -26,8 +25,6 @@ public class ExtentManager {
         String fileName = getReportPath(FILE_PATH);
 
         ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(fileName);
-        htmlReporter.config().setTestViewChartLocation(ChartLocation.BOTTOM);
-        htmlReporter.config().setChartVisibilityOnOpen(true);
         htmlReporter.config().setTheme(Theme.DARK);
         htmlReporter.config().setDocumentTitle(FILE_NAME);
         htmlReporter.config().setEncoding("utf-8");
