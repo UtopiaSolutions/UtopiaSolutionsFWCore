@@ -109,6 +109,7 @@ public class BaseUITest {
     public void afterTest() {
         log.debug("Executing @AfterTest...");
         TestLogHelper.stopTestLogging();
+        extent.flush();
     }
 
 }
