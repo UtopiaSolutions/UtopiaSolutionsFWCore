@@ -22,10 +22,6 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class TestListener extends BaseUITest implements ITestListener {
 
-//    private static String getTestMethodName(ITestResult iTestResult) {
-//        return iTestResult.getMethod().getConstructorOrMethod().getName();
-//    }
-
     @Override
     public void onStart(ITestContext context) {
         System.out.println("*** Test Suite " + context.getName() + " started ***");
@@ -106,6 +102,6 @@ public class TestListener extends BaseUITest implements ITestListener {
             throw new Exception("There was an error capturing the screen image.");
         }
 
-        return "data:image/png;charset=utf-8;base64," + base64Encoded;
+        return base64Encoded;
     }
 }
