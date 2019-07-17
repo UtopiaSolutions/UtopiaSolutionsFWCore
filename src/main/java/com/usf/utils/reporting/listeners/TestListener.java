@@ -72,8 +72,7 @@ public class TestListener extends BaseUITest implements ITestListener {
         Date date = new Date();
         Timestamp timeStamp = new Timestamp(date.getTime());
 
-        String[] testClassNameArray = result.getTestClass().getRealClass().toString().trim().split(".");
-        String testClassName = testClassNameArray[testClassNameArray.length - 1];
+        String testClassName = result.getClass().toString();
         String testMethodName = result.getName().trim();
         String screenShotName = testMethodName + "_" + timeStamp + ".png";
         String FILE_SEPARATOR = System.getProperty("file.separator");
