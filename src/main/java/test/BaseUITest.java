@@ -2,22 +2,21 @@ package test;
 
 import com.usf.utils.ConfigurationReader;
 import com.usf.utils.logging.TestLogHelper;
-import com.usf.utils.reporting.ExtentTestManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.ITestResult;
-import org.testng.annotations.*;
-
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
 
 public class BaseUITest {
     private final Logger log = LoggerFactory.getLogger(BaseUITest.class);
 
 
-    @BeforeClass
+    @BeforeTest
     public void readConfigs() {
-        log.debug("Executing @BeforeClass...");
+        log.debug("Executing readConfigs()...");
         try {
             ConfigurationReader.readConfigurations("client_config");
         } catch (Exception e) {
@@ -25,26 +24,6 @@ public class BaseUITest {
             log.warn("No Configuration File found!");
         } finally {
             log.debug("Configurations loaded.");
-        }
-    }
-
-    @BeforeTest
-    public void beforeTest() {
-        log.debug("Executing @BeforeTest...");
-        String name = "";
-        String desc = "";
-        Method[] methods = this.getClass().getMethods();
-
-        Annotation annotation = methods[0].getAnnotation(Test.class);
-        if(annotation instanceof Test) {
-            Test testAnnotation = (Test) annotation;
-            name = testAnnotation.testName();
-            desc = testAnnotation.description();
-        }
-        if(!name.equals("")) {
-            ExtentTestManager.startTest(name, desc);
-        } else {
-            ExtentTestManager.startTest(methods[0].getName(), "");
         }
     }
 
