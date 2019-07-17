@@ -3,6 +3,7 @@ package test;
 import com.usf.utils.ConfigurationReader;
 import com.usf.utils.logging.TestLogHelper;
 import com.usf.utils.reporting.ExtentTestManager;
+import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.ITestResult;
@@ -11,8 +12,12 @@ import org.testng.annotations.*;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+
 public class BaseUITest {
     private final Logger log = LoggerFactory.getLogger(BaseUITest.class);
+
+    public WebDriver driver;
 
     @BeforeClass
     public void readConfigs() {
@@ -25,6 +30,7 @@ public class BaseUITest {
         } finally {
             log.debug("Configurations loaded.");
         }
+        driver = getWebDriver();
     }
 
     @BeforeTest

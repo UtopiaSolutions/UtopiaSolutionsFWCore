@@ -11,8 +11,6 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 import test.BaseUITest;
 
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-
 public class TestListener extends BaseUITest implements ITestListener {
     WebDriver driver;
 
@@ -23,6 +21,7 @@ public class TestListener extends BaseUITest implements ITestListener {
     @Override
     public void onStart(ITestContext iTestContext) {
         System.out.println("I am in onStart method " + iTestContext.getName());
+        iTestContext.setAttribute("WebDriver", this.driver);
     }
 
     @Override
@@ -50,7 +49,9 @@ public class TestListener extends BaseUITest implements ITestListener {
         System.out.println("I am in onTestFailure method " + getTestMethodName(iTestResult) + " failed");
 
         //Get driver from BaseTest and assign to local webDriver variable.
-        WebDriver webDriver = getWebDriver();
+//        WebDriver webDriver = getWebDriver();
+        Object testClass = iTestResult.getInstance();
+        WebDriver webDriver = ((BaseUITest) testClass).driver;
 
         //Take base64Screenshot screenshot.
         String base64Screenshot = "data:image/png;base64," + ((TakesScreenshot) webDriver).
