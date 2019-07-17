@@ -30,7 +30,7 @@ public class BaseUITest {
     public ExtentReports extent;
     public ExtentTest extentTest;
 
-    @BeforeClass
+    @BeforeTest
     public void readConfigs() {
         log.debug("Executing @BeforeClass...");
         try {
@@ -52,7 +52,7 @@ public class BaseUITest {
         }
     }
 
-    @BeforeTest
+    @BeforeClass
     public void setupTestReport() {
         log.debug("Executing @BeforeTest...");
 
