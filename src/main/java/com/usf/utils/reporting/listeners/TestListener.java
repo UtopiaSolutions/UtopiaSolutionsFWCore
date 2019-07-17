@@ -4,7 +4,6 @@ import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
-import com.usf.utils.logging.TestLogHelper;
 import com.usf.utils.reporting.ExtentManager;
 import com.usf.utils.reporting.ExtentTestManager;
 import org.openqa.selenium.OutputType;
@@ -58,13 +57,12 @@ public class TestListener extends BaseUITest implements ITestListener {
             //Take base64Screenshot screenshot.
             String base64Screenshot = "data:image/png;base64," + ((TakesScreenshot) webDriver).
                     getScreenshotAs(OutputType.BASE64);
-            ExtentTestManager.getTest().log(Status.FAIL, "Details:",
+            ExtentTestManager.getTest().log(Status.FAIL, "Click for image details --> ",
                     MediaEntityBuilder.createScreenCaptureFromBase64String(base64Screenshot).build());
         } catch (IOException e) {
             log.error("Screenshot could not be captured.");
             ExtentTestManager.getTest().fail("Screenshot could not be captured.");
         }
-        TestLogHelper.stopTestLogging();
     }
 
     @Override
