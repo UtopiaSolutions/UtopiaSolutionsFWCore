@@ -91,7 +91,7 @@ public class TestListener extends BaseUITest implements ITestListener {
         try {
             screenCapture = new Robot().createScreenCapture(screen);
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            ImageIO.write(screenCapture, "png", baos);
+            ImageIO.write(screenCapture, "jpg", baos);
             baos.flush();
             byte[] encodeBase64 = Base64.getEncoder().encode(baos.toByteArray());
             base64Encoded = new String(encodeBase64);
@@ -102,6 +102,6 @@ public class TestListener extends BaseUITest implements ITestListener {
             throw new Exception("There was an error capturing the screen image.");
         }
 
-        return base64Encoded;
+        return "data:image/jpg;charset=utf-8;base64," + base64Encoded;
     }
 }
