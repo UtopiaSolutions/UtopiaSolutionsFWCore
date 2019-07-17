@@ -31,8 +31,8 @@ public class BaseUITest {
     public ExtentTest extentTest;
 
     @BeforeTest
-    public void readConfigs() {
-        log.debug("Executing @BeforeClass...");
+    public void testSetup() {
+        log.debug("Executing @BeforeTest...");
         try {
             ConfigurationReader.readConfigurations("client_config");
         } catch (Exception e) {
@@ -49,29 +49,24 @@ public class BaseUITest {
             htmlReporter.config().setReportName("Test Results"); // Name of the report
             htmlReporter.config().setTheme(Theme.DARK);//Default Theme of Report
 
+            String name = "";
+            String desc = "";
+            Method[] methods = this.getClass().getMethods();
+
+            Annotation annotation = methods[0].getAnnotation(Test.class);
+            if (annotation instanceof Test) {
+                Test testAnnotation = (Test) annotation;
+                name = testAnnotation.testName();
+                desc = testAnnotation.description();
+            }
+            if (!name.equals("")) {
+                extentTest = extent.createTest(name, desc);
+            } else {
+                extentTest = extent.createTest(methods[0].getName(), "");
+            }
         }
     }
 
-    @BeforeClass
-    public void setupTestReport() {
-        log.debug("Executing @BeforeTest...");
-
-        String name = "";
-        String desc = "";
-        Method[] methods = this.getClass().getMethods();
-
-        Annotation annotation = methods[0].getAnnotation(Test.class);
-        if (annotation instanceof Test) {
-            Test testAnnotation = (Test) annotation;
-            name = testAnnotation.testName();
-            desc = testAnnotation.description();
-        }
-        if (!name.equals("")) {
-            extentTest = extent.createTest(name, desc);
-        } else {
-            extentTest = extent.createTest(methods[0].getName(), "");
-        }
-    }
 
     @BeforeMethod
     public void beforeMethod(ITestResult result) throws Exception {
