@@ -54,7 +54,7 @@ public class TestListener extends BaseUITest implements ITestListener {
         //Take base64Screenshot screenshot.
         String base64Screenshot = "data:image/png;base64," + ((TakesScreenshot) webDriver).
                 getScreenshotAs(OutputType.BASE64);
-        ExtentTestManager.getTest().addScreenCaptureFromBase64String(base64Screenshot, "Click For Screenshot");
+        ExtentTestManager.getTest().addScreenCaptureFromBase64String(base64Screenshot, "CLICK");
         TestLogHelper.stopTestLogging();
     }
 
