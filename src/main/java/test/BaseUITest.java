@@ -3,7 +3,6 @@ package test;
 import com.usf.utils.ConfigurationReader;
 import com.usf.utils.logging.TestLogHelper;
 import com.usf.utils.reporting.ExtentTestManager;
-import com.usf.utils.reporting.listeners.TestListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.ITestResult;
@@ -12,7 +11,6 @@ import org.testng.annotations.*;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
-@Listeners(TestListener.class)
 public class BaseUITest {
     private final Logger log = LoggerFactory.getLogger(BaseUITest.class);
 
