@@ -1,8 +1,8 @@
 package com.usf.utils.reporting.listeners;
 
+import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.ExtentColor;
-import com.aventstack.extentreports.markuputils.Markup;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.usf.utils.logging.TestLogHelper;
 import com.usf.utils.reporting.ExtentManager;
@@ -16,6 +16,8 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 import test.BaseUITest;
+
+import java.io.IOException;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
@@ -52,10 +54,16 @@ public class TestListener extends BaseUITest implements ITestListener {
         ExtentTestManager.getTest().log(Status.FAIL, MarkupHelper.createLabel(result.getName() + " - Test Case Failed", ExtentColor.RED));
         ExtentTestManager.getTest().log(Status.FAIL, MarkupHelper.createLabel(result.getThrowable() + " - Test Case Failed", ExtentColor.RED));
         WebDriver webDriver = getWebDriver();
-        //Take base64Screenshot screenshot.
-        String base64Screenshot = "data:image/png;base64," + ((TakesScreenshot) webDriver).
-                getScreenshotAs(OutputType.BASE64);
-        ExtentTestManager.getTest().log(Status.FAIL, (Markup) ExtentTestManager.getTest().addScreenCaptureFromBase64String(base64Screenshot));
+        try {
+            //Take base64Screenshot screenshot.
+            String base64Screenshot = "data:image/png;base64," + ((TakesScreenshot) webDriver).
+                    getScreenshotAs(OutputType.BASE64);
+            ExtentTestManager.getTest().log(Status.FAIL, "Details:",
+                    MediaEntityBuilder.createScreenCaptureFromBase64String(base64Screenshot).build());
+        } catch (IOException e) {
+            log.error("Screenshot could not be captured.");
+            ExtentTestManager.getTest().fail("Screenshot could not be captured.");
+        }
         TestLogHelper.stopTestLogging();
     }
 
