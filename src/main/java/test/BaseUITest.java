@@ -4,15 +4,17 @@ import com.usf.utils.ConfigurationReader;
 import com.usf.utils.logging.TestLogHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.ITestContext;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.*;
 
 public class BaseUITest {
     private final Logger log = LoggerFactory.getLogger(BaseUITest.class);
 
+    @BeforeSuite
+    public void startSuite(ITestContext context) {
+        log.info("Execution of test suite {} has started.", context.getCurrentXmlTest().getSuite().getName());
+    }
 
     @BeforeTest
     public void readConfigs() {
@@ -52,4 +54,8 @@ public class BaseUITest {
         TestLogHelper.stopTestLogging();
     }
 
+    @AfterSuite
+    public void finishSuite(ITestContext context) {
+        log.info("Execution of test suite {} has ended.", context.getCurrentXmlTest().getSuite().getName());
+    }
 }
