@@ -90,7 +90,7 @@ public class TestListener extends BaseUITest implements ITestListener {
         File target = new File(dest);
         FileUtils.copyFile(src, target);
 
-        return dest;
+        return target.getAbsolutePath();
     }
 
     public static String generateFileName(ITestResult result){
