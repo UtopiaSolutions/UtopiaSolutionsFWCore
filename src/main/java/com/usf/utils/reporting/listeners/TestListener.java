@@ -58,7 +58,8 @@ public class TestListener extends BaseUITest implements ITestListener {
         ExtentTestManager.getTest().log(Status.FAIL, MarkupHelper.createLabel(result.getThrowable() + " - Test Case Failed", ExtentColor.RED));
         WebDriver driver = getWebDriver();
         try {
-            String screenshot = getBase64ScreenShot(driver);
+            String screenshot = captureScreen(driver, generateFileName(result));
+
             ExtentTestManager.getTest().fail("Screenshot: " + ExtentTestManager.getTest().addScreenCaptureFromPath(screenshot));
         } catch (IOException e) {
             ExtentTestManager.getTest().fail("Could not capture screenshot.");
@@ -92,7 +93,7 @@ public class TestListener extends BaseUITest implements ITestListener {
         File target = new File(dest);
         FileUtils.copyFile(src, target);
 
-        return target.getAbsolutePath();
+        return dest;
     }
 
     public static String generateFileName(ITestResult result){
@@ -100,13 +101,6 @@ public class TestListener extends BaseUITest implements ITestListener {
         Date date = new Date();
         String fileName = result.getName()+ "_" + dateFormat.format(date);
         return fileName;
-
-    }
-
-    private static String getBase64ScreenShot(WebDriver driver) throws Exception {
-        TakesScreenshot newScreen = (TakesScreenshot) driver;
-        String scnShot = newScreen.getScreenshotAs(OutputType.BASE64);
-        return "data:image/jpg;base64, " + scnShot ;
     }
 
 }
