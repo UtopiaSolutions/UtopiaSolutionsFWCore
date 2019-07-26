@@ -6,6 +6,7 @@ import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.usf.utils.reporting.ExtentManager;
 import com.usf.utils.reporting.ExtentTestManager;
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -16,10 +17,15 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 import test.BaseUITest;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Base64;
 import java.util.Date;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
@@ -58,11 +64,13 @@ public class TestListener extends BaseUITest implements ITestListener {
         ExtentTestManager.getTest().log(Status.FAIL, MarkupHelper.createLabel(result.getThrowable() + " - Test Case Failed", ExtentColor.RED));
         WebDriver driver = getWebDriver();
         try {
-            String screenshot = captureScreen(driver, generateFileName(result));
+            String screenshot = getBase64ScreenShot(driver);
             ExtentTestManager.getTest().fail("Screenshot: " + ExtentTestManager.getTest().addScreenCaptureFromPath(screenshot));
         } catch (IOException e) {
             ExtentTestManager.getTest().fail("Could not capture screenshot.");
             log.error("Could not capture screenshot.");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }
@@ -99,6 +107,33 @@ public class TestListener extends BaseUITest implements ITestListener {
         String fileName = result.getName()+ "_" + dateFormat.format(date);
         return fileName;
 
+    }
+
+    private static String getBase64ScreenShot(WebDriver driver) throws Exception {
+
+        Dimension screenDimensions = driver.manage().window().getSize();
+        int x = driver.manage().window().getPosition().x;
+        int y = driver.manage().window().getPosition().y;
+        Rectangle screen = new Rectangle(x, y, screenDimensions.getWidth(), screenDimensions.getHeight());
+
+        BufferedImage screenCapture;
+        String base64Encoded;
+
+        try {
+            screenCapture = new Robot().createScreenCapture(screen);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(screenCapture, "png", baos);
+            baos.flush();
+            byte[] encodeBase64 = Base64.getEncoder().encode(baos.toByteArray());
+            base64Encoded = new String(encodeBase64);
+            baos.close();
+        } catch (AWTException awte) {
+            throw new Exception("There was an error converting the image to base64.");
+        } catch (IOException ioe) {
+            throw new Exception("There was an error capturing the screen image.");
+        }
+
+        return "data:image/png;charset=utf-8;base64," + base64Encoded;
     }
 
 }
