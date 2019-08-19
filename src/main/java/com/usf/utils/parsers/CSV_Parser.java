@@ -5,40 +5,35 @@ import com.usf.metadata.Metadata;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 
-public class CSV_Parser {
-    private final Logger log = LoggerFactory.getLogger(CSV_Parser.class);
+public class CSV_Parser extends Parser{
 
+    public CSV_Parser(String filepath, String filename) {
+        super(filepath,filename);
+        //and maybe more stuff...
+    }
 
-    public void parse(String filepath, String filename) {
+    public Iterator<String[]> parse() throws IOException {
         boolean hasExtension = filename.contains(".csv");
         CSVReader reader;
+        if(hasExtension)
+            reader = new CSVReader(new FileReader(filepath + "/" + filename));
+        else
+            reader = new CSVReader(new FileReader(filepath + "/" + filename + ".csv"));
 
-        try {
-
-            if(hasExtension) {
-                reader = new CSVReader(new FileReader(filepath + "/" + filename));
-            } else {
-                reader = new CSVReader(new FileReader(filepath + "/" + filename + ".csv"));
-            }
-
-            String[] line;
-            while ((line = reader.readNext()) != null) {
-                if(line.length <= 1) {
-                    continue;
-                } else {
-                    Metadata.getInstance().add(line[0], line[1]);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        ArrayList<String[]> lines = new ArrayList<>();
+        String[] line;
+        while ((line = reader.readNext()) != null) {
+            if(line.length <= 1)
+                continue;
+            else
+                lines.add(line);
         }
-
-        if(hasExtension) {
-            log.debug(filepath + "/" + filename + " has been parsed to metadata.");
-        } else {
-            log.debug(filepath + "/" + filename + ".csv has been parsed to metadata.");
-        }
+        return lines.iterator();
     }
 }
