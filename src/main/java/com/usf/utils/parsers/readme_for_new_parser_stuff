@@ -9,8 +9,6 @@
 - Read in data is not added to metadata within the parser method, but put in a separate method
   if that is what the user desires to do with the data.
 - Added constructors model typical FileReader structures for easier-ish use
-
-- Note: no more parser factory, onus is on user to construct the Parser
-    - e.g. Parser p = new CSV_Parser("/path/to/file/","hello.csv");
-    - that functionality can easily be added in a separate Parser_Factory.java class
-    - a file with that name exists currently in the submodule but only houses old code...
+- Parser Factory included which returns the appropriate parser depending on the supplied file
+    - custom Exception: IncompatibleFileTypeException
+    

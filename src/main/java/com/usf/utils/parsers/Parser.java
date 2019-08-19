@@ -32,18 +32,4 @@ public abstract class Parser {
             Metadata.getInstance().add(l[0],l[1]);
         log.debug("done");
     }
-
-    protected String getFileType(String filename) {
-        if (filename.contains(".")) {
-            String[] parts = filename.split(".");
-            assert parts.length == 2;
-            return parts[1];
-        } else {
-            return ".txt";
-        }
-    }
-
-
-
-
 }
