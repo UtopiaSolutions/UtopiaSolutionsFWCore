@@ -1,14 +1,10 @@
 package com.usf.utils.parsers;
 
-import com.usf.metadata.Metadata;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,6 +17,7 @@ public class JSON_Parser extends Parser{
     }
 
     public Iterator<String[]> parse() throws IOException, ParseException {
+        log.debug("parsing... ");
         boolean hasExtension = filename.contains(".json");
         JSONParser parser = new JSONParser();
 
@@ -41,6 +38,7 @@ public class JSON_Parser extends Parser{
             String[] pair = iterator.next().split(":");
             toRet.add(pair);
         }
+        log.debug("done");
         return toRet.iterator();
     }
 }

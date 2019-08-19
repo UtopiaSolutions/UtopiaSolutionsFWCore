@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Iterator;
 
@@ -22,15 +21,16 @@ public abstract class Parser {
         log = LoggerFactory.getLogger("Parser");
         this.filepath = filepath;
         this.filename = filename;
+        log.info("parser initialized");
     }
 
     public abstract Iterator<String[]> parse() throws IOException, ParserConfigurationException, SAXException, ParseException;
 
     protected void addAsMetadata(String[][] data) {
-        log.info("adding data from " + filepath + "/" + filename + "to metadata...");
+        log.debug("adding data from " + filepath + "/" + filename + "to metadata...");
         for (String[] l: data)
             Metadata.getInstance().add(l[0],l[1]);
-        log.info("done");
+        log.debug("done");
     }
 
     protected String getFileType(String filename) {
@@ -43,8 +43,6 @@ public abstract class Parser {
         }
     }
 
-    public String filename() { return this.filename; }
-    public String filepath() { return this.filepath; }
 
 
 

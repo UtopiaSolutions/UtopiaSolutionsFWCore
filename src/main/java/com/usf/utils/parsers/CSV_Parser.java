@@ -15,10 +15,10 @@ public class CSV_Parser extends Parser{
 
     public CSV_Parser(String filepath, String filename) {
         super(filepath,filename);
-        //and maybe more stuff...
     }
 
     public Iterator<String[]> parse() throws IOException {
+        log.debug("parsing... ");
         boolean hasExtension = filename.contains(".csv");
         CSVReader reader;
         if(hasExtension)
@@ -34,6 +34,7 @@ public class CSV_Parser extends Parser{
             else
                 lines.add(line);
         }
+        log.debug("done");
         return lines.iterator();
     }
 }

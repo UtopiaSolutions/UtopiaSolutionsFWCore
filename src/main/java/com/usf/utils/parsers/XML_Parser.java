@@ -24,6 +24,7 @@ public class XML_Parser extends Parser {
     }
 
     public Iterator<String[]> parse() throws IOException, ParserConfigurationException, SAXException {
+        log.debug("parsing... ");
         boolean hasExtension = filename.contains(".xml");
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -55,6 +56,7 @@ public class XML_Parser extends Parser {
                 toRet.add(new String[]{key,value});
             }
         }
+        log.debug("done");
         return toRet.iterator();
     }
 }
