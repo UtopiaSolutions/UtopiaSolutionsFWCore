@@ -16,18 +16,12 @@ public class JSON_Parser extends Parser{
         super(filepath,filename);
     }
 
-    public Iterator<String[]> parse() throws IOException, ParseException {
+    public ArrayList<String[]> parse() throws IOException, ParseException {
         log.debug("parsing... ");
-        boolean hasExtension = filename.contains(".json");
         JSONParser parser = new JSONParser();
 
         Object obj;
-
-        if(hasExtension) {
-            obj = parser.parse(new FileReader(filepath + "/" + filename));
-        } else {
-            obj = parser.parse(new FileReader(filepath + "/" + filename + ".json"));
-        }
+        obj = parser.parse(new FileReader(filepath + "/" + filename));
 
         JSONObject jsonObject = (JSONObject) obj;
         JSONArray companyList = (JSONArray) jsonObject.get("Metadata");
@@ -39,6 +33,6 @@ public class JSON_Parser extends Parser{
             toRet.add(pair);
         }
         log.debug("done");
-        return toRet.iterator();
+        return toRet;
     }
 }

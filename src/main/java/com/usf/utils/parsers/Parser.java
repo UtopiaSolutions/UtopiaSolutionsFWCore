@@ -7,7 +7,9 @@ import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
+import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public abstract class Parser {
@@ -24,12 +26,25 @@ public abstract class Parser {
         log.info("parser initialized");
     }
 
-    public abstract Iterator<String[]> parse() throws IOException, ParserConfigurationException, SAXException, ParseException;
+    public abstract ArrayList<String[]> parse() throws IOException, ParserConfigurationException, SAXException, ParseException;
 
-    protected void addAsMetadata(String[][] data) {
+    protected void addAsMetadata(ArrayList<String[]> toAdd) {
         log.debug("adding data from " + filepath + "/" + filename + "to metadata...");
-        for (String[] l: data)
-            Metadata.getInstance().add(l[0],l[1]);
-        log.debug("done");
+        if (isMetadataSafe(toAdd)) {
+            Iterator<String[]> it = toAdd.iterator();
+            while (it.hasNext()) {
+                String[] line = it.next();
+                Metadata.getInstance().add(line[0],line[1]);
+            }
+            log.debug("done");
+        }
+    }
+
+    private boolean isMetadataSafe(ArrayList<String[]> arr) {
+        for (String[] e: arr) {
+            if (e.length != 2)
+                return false;
+        }
+        return true;
     }
 }

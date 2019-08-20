@@ -1,7 +1,5 @@
 package com.usf.utils.parsers;
 
-import java.io.FileNotFoundException;
-
 public class ParserFactory {
 
     public static Parser getParser(String filepath, String filename) throws IncompatibleFileTypeException {
@@ -18,11 +16,11 @@ public class ParserFactory {
 
     private static String getFileType(String filename) {
         if (filename.contains(".")) {
-            String[] parts = filename.split(".");
-            assert parts.length == 2;
-            return parts[1];
+            String[] p = filename.split("\\.");
+            assert p.length == 2;
+            return p[1];
         } else {
-            return ".txt";
+            return "txt";
         }
     }
 }

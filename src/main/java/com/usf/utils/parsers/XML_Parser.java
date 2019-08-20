@@ -23,20 +23,14 @@ public class XML_Parser extends Parser {
         super(filepath,filename);
     }
 
-    public Iterator<String[]> parse() throws IOException, ParserConfigurationException, SAXException {
+    public ArrayList<String[]> parse() throws IOException, ParserConfigurationException, SAXException {
         log.debug("parsing... ");
-        boolean hasExtension = filename.contains(".xml");
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
-
         // Load the input XML document, parse it and return an instance of the Document class.
         Document document;
-        if(hasExtension) {
-            document = builder.parse(new File(filepath + "/" + filename));
-        } else {
-            document = builder.parse(new File(filepath + "/" + filename + ".xml"));
-        }
+        document = builder.parse(new File(filepath + "/" + filename));
 
         NodeList nodeList = document.getDocumentElement().getChildNodes();
         ArrayList<String[]> toRet = new ArrayList<>();
@@ -57,6 +51,6 @@ public class XML_Parser extends Parser {
             }
         }
         log.debug("done");
-        return toRet.iterator();
+        return toRet;
     }
 }

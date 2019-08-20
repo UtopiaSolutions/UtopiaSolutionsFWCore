@@ -17,14 +17,11 @@ public class CSV_Parser extends Parser{
         super(filepath,filename);
     }
 
-    public Iterator<String[]> parse() throws IOException {
+    public ArrayList<String[]> parse() throws IOException {
         log.debug("parsing... ");
-        boolean hasExtension = filename.contains(".csv");
+
         CSVReader reader;
-        if(hasExtension)
-            reader = new CSVReader(new FileReader(filepath + "/" + filename));
-        else
-            reader = new CSVReader(new FileReader(filepath + "/" + filename + ".csv"));
+        reader = new CSVReader(new FileReader(filepath + "/" + filename));
 
         ArrayList<String[]> lines = new ArrayList<>();
         String[] line;
@@ -35,6 +32,6 @@ public class CSV_Parser extends Parser{
                 lines.add(line);
         }
         log.debug("done");
-        return lines.iterator();
+        return lines;
     }
 }
