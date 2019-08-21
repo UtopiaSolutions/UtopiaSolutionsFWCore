@@ -59,10 +59,13 @@ public class TestListener extends BaseUITest implements ITestListener {
         WebDriver driver = getWebDriver();
         try {
             String screenshot = captureScreen(driver, generateFileName(result));
+
             ExtentTestManager.getTest().fail("Screenshot: " + ExtentTestManager.getTest().addScreenCaptureFromPath(screenshot));
         } catch (IOException e) {
             ExtentTestManager.getTest().fail("Could not capture screenshot.");
             log.error("Could not capture screenshot.");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }
@@ -98,7 +101,6 @@ public class TestListener extends BaseUITest implements ITestListener {
         Date date = new Date();
         String fileName = result.getName()+ "_" + dateFormat.format(date);
         return fileName;
-
     }
 
 }
