@@ -5,6 +5,7 @@ import com.squareup.javapoet.ClassName
 import com.squareup.javapoet.MethodSpec
 import com.squareup.javapoet.TypeName
 import javax.annotation.Generated
+//import javax.annotation.processing.Generated
 import javax.lang.model.element.Modifier
 import javax.lang.model.element.VariableElement
 

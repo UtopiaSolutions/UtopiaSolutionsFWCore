@@ -1,7 +1,7 @@
 # USF
 Utopia Selenium Framework
 
-A super cool and easy to use browser and Rest api tests automation framework in Java. It has all the feature which a developer or a quality engineer would like to have in his toolbox.
+A super cool and easy to use browser and Rest api test automation framework in Java. It has all the feature which a developer or a quality engineer would like to have in his toolbox.
 
 1. Selenide - A test framework to keep you away from all the hassels of Selenium setup.
 2. Extent Report - A beautiful and useful HTML report to analyze you test runs.
