@@ -7,11 +7,15 @@ import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
-import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * Abstract class for parsing of any file type in the US framework
+ * Delegates the definition of parse() method to child classes, but does
+ * implement ability to added resulting data to the framework's metadata.
+ */
 public abstract class Parser {
 
     //using overloaded getLogger() method that uses a string to name logger

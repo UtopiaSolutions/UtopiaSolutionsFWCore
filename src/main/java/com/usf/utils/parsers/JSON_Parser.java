@@ -10,6 +10,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+
+/**
+ * JSON_Parser extends abstract Parser class to implement json file parsing.
+ * Gives the ability to add resulting data to Metadata class while also giving
+ * more general functionality to the parsing of this file type within the US
+ * framework.
+ */
 public class JSON_Parser extends Parser{
 
     public JSON_Parser(String filepath, String filename) {
@@ -24,10 +31,10 @@ public class JSON_Parser extends Parser{
         obj = parser.parse(new FileReader(filepath + "/" + filename));
 
         JSONObject jsonObject = (JSONObject) obj;
-        JSONArray companyList = (JSONArray) jsonObject.get("Metadata");
+        JSONArray dataList = (JSONArray) jsonObject.get("Metadata");
 
         ArrayList<String[]> toRet = new ArrayList<>();
-        Iterator<String> iterator = companyList.iterator();
+        Iterator<String> iterator = dataList.iterator();
         while (iterator.hasNext()) {
             String[] pair = iterator.next().split(":");
             toRet.add(pair);

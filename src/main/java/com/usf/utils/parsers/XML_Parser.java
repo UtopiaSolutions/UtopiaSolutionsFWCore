@@ -1,8 +1,5 @@
 package com.usf.utils.parsers;
 
-import com.usf.metadata.Metadata;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -15,8 +12,13 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 
+/**
+ * XML_Parser extends abstract Parser class to implement xml file parsing.
+ * Gives the ability to add resulting data to Metadata class while also giving
+ * more general functionality to the parsing of this file type within the US
+ * framework.
+ */
 public class XML_Parser extends Parser {
 
     public XML_Parser(String filepath, String filename) {

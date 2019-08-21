@@ -1,5 +1,9 @@
 package com.usf.utils.parsers;
 
+/**
+ * Factory for parsers in the parser module. Chooses the appropriate
+ * parser based on the file type of the filename that is passed in.
+ */
 public class ParserFactory {
 
     public static Parser getParser(String filepath, String filename) throws IncompatibleFileTypeException {
